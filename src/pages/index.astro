@@ -5,30 +5,68 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
-const featured = (await getCollection('projects'))
-	.filter((project) => project.data.featured)
-	.sort((a, b) => a.data.order - b.data.order);
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+// TODO(musicbrainz): Replace this hardcoded album with the latest listen from
+// Moe's MusicBrainz / ListenBrainz profile. Fetch the most recent album (or
+// release) and render it below location as `♪ {album}`. Until then, keep
+// this string in sync manually.
+const latestListen = 'Chanel Beads';
 ---
 
-<BaseLayout description="Selected product, brand, and art work by Moe Suliman.">
+<BaseLayout flush description="Selected product, brand, and art work by Moe Suliman.">
 	<Nav slot="nav" />
 
-	<section class="hero">
-		<p class="hero__label">Work</p>
-		<h1>Moe Suliman</h1>
-		<p class="hero__lede">
-			Multidisciplinary product designer working across product, brand, and personal art.
+	<section class="hero hero--intro site-measure">
+		<h1>M. Suliman</h1>
+		<p class="hero__bio">
+			Multidisciplinary designer with 12+ years of experience. I work with early stage startups on
+			0 to 1 product and brand design.
+			<br /><br />
+			Currently: Founding Designer at <a href="https://kydlabs.com">KYD Labs</a>, building the
+			brand and software venues use to run &amp; market live events.
 		</p>
+		<div class="hero__meta">
+			<div class="hero__meta-col">
+				<p>moe@moesuliman.com</p>
+				<p class="hero__meta-socials">
+					<a href="https://www.linkedin.com/in/moe-suliman">
+						<span class="hero__social-icon">
+							<img src="/icons/linkedin.svg" alt="LinkedIn" width="12" height="12" />
+						</span>
+					</a>
+					<a href="https://x.com/mo__786">
+						<span class="hero__social-icon">
+							<img src="/icons/x.svg" alt="X" width="12" height="12" />
+						</span>
+					</a>
+					<a href="https://instagram.com/halal.harami">
+						<span class="hero__social-icon">
+							<img src="/icons/instagram.svg" alt="Instagram" width="12" height="12" />
+						</span>
+					</a>
+				</p>
+			</div>
+			<div class="hero__meta-col">
+				<p><span class="hero__glyph" aria-hidden="true">⌂</span> Brooklyn, NY</p>
+				<p><span class="hero__glyph" aria-hidden="true">♪</span> {latestListen}</p>
+			</div>
+		</div>
 	</section>
 
-	<section>
-		<div class="section-head">
-			<h2>Featured work</h2>
-			<a href="/work">All work</a>
+	<section class="work-board">
+		<div class="site-measure">
+			<div class="filters filters--heading" role="group" aria-label="Filter by category">
+				<button type="button" data-filter="all" aria-pressed="true">All Work</button>
+				<button type="button" data-filter="product" aria-pressed="false">Product</button>
+				<button type="button" data-filter="brand" aria-pressed="false">Brand</button>
+				<button type="button" data-filter="art" aria-pressed="false">Art</button>
+			</div>
 		</div>
-		<ul class="project-grid">
+
+		<ul class="project-grid project-grid--bleed">
 			{
-				featured.map((project) => (
+				projects.map((project) => (
 					<ProjectCard
 						href={`/work/${project.id}`}
 						title={project.data.title}
@@ -43,3 +81,23 @@ const featured = (await getCollection('projects'))
 
 	<Footer slot="footer" />
 </BaseLayout>
+
+<script>
+	const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
+	const items = document.querySelectorAll<HTMLElement>('.work-item');
+
+	buttons.forEach((button) => {
+		button.addEventListener('click', () => {
+			const filter = button.dataset.filter ?? 'all';
+
+			buttons.forEach((other) => {
+				other.setAttribute('aria-pressed', String(other === button));
+			});
+
+			items.forEach((item) => {
+				const category = item.dataset.category;
+				item.hidden = filter !== 'all' && category !== filter;
+			});
+		});
+	});
+</script>

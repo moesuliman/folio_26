@@ -6,7 +6,7 @@
 
 .site-main {
 	flex: 1;
-	width: min(100% - 2rem, var(--max-width));
+	width: min(100% - 4rem, var(--max-width));
 	margin-inline: auto;
 	padding-top: calc(var(--nav-offset) + var(--space-4));
 	padding-bottom: var(--space-6);
@@ -14,11 +14,19 @@
 
 .site-main--flush {
 	width: 100%;
+	max-width: none;
+	margin-inline: 0;
 	padding-inline: 0;
 }
 
+/* Constrained content measure (replaces main max-width on flush pages) */
+.site-measure {
+	width: min(100% - 4rem, var(--max-width));
+	margin-inline: auto;
+}
+
 .site-footer {
-	width: min(100% - 2rem, var(--max-width));
+	width: min(100% - 4rem, var(--max-width));
 	margin-inline: auto;
 	padding-block: var(--space-5) var(--space-6);
 	color: var(--color-muted);
@@ -28,6 +36,102 @@
 
 .hero {
 	padding-block: var(--space-4) var(--space-5);
+}
+
+/* Home intro: one body size/weight; hierarchy via space only */
+.hero--intro {
+	display: grid;
+	gap: var(--space-3);
+	padding-block: 0;
+	margin-bottom: var(--space-5);
+}
+
+.hero--intro :where(h1, p, a) {
+	margin: 0;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.6;
+	letter-spacing: normal;
+	color: var(--color-fg);
+}
+
+.hero--intro .hero__bio {
+	max-width: 34rem;
+}
+
+.hero--intro .hero__bio a {
+	text-decoration: underline;
+	text-underline-offset: 0.18em;
+}
+
+.hero--intro .hero__meta {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 12rem));
+	gap: var(--space-4) var(--space-5);
+	max-width: 34rem;
+}
+
+.hero--intro .hero__meta-col {
+	display: grid;
+	gap: 0;
+}
+
+.hero--intro .hero__glyph {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 1rem;
+	height: 1rem;
+	aspect-ratio: 1;
+	overflow: hidden;
+	background: #333;
+	color: #fff;
+	font-size: 1rem;
+	line-height: 1;
+	border-radius: 2px;
+	margin-right: 0.35em;
+	vertical-align: middle;
+}
+
+.hero--intro .hero__meta-socials {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+	min-height: 1.6em;
+}
+
+.hero--intro .hero__social-icon {
+	display: inline-flex;
+	width: 12px;
+	height: 12px;
+	align-items: center;
+	justify-content: center;
+}
+
+.hero--intro .hero__social-icon img {
+	width: 12px;
+	height: 12px;
+	display: block;
+}
+
+.hero--intro .hero__meta-col a {
+	text-decoration: none;
+}
+
+.hero--intro .hero__meta-col a:hover {
+	color: var(--color-headings);
+}
+
+.hero--intro .hero__meta-socials a:hover .hero__social-icon img {
+	filter: brightness(1.45);
+}
+
+@media (max-width: 480px) {
+	.hero--intro .hero__meta {
+		grid-template-columns: 1fr;
+	}
 }
 
 .section-head {
@@ -51,14 +155,44 @@
 .project-grid {
 	display: grid;
 	gap: var(--space-5);
-	grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+	/* Keep ≥2 columns on mobile; grow with auto-fill past ~16rem tracks */
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(min(16rem, calc((100% - var(--space-5)) / 2)), 1fr)
+	);
 	list-style: none;
 	margin: 0;
-	padding: 0;
+	padding: 2rem;
+	background: #000;
+	border-radius: 4px;
+}
+
+@media (min-width: 721px) {
+	.project-grid {
+		gap: var(--space-6);
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(min(16rem, calc((100% - var(--space-6)) / 2)), 1fr)
+		);
+	}
+}
+
+.project-grid--bleed {
+	width: 100%;
+	border-radius: 0;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	padding: 4rem;
+}
+
+@media (max-width: 720px) {
+	.project-grid--bleed {
+		padding: 2rem;
+	}
 }
 
 .project-header {
-	width: min(100% - 2rem, var(--max-width));
+	width: min(100% - 4rem, var(--max-width));
 	margin-inline: auto;
 	padding-block: var(--space-4);
 }
@@ -77,7 +211,7 @@
 }
 
 .project-body > :where(.text-block, .image-grid, .video-block, .two-col) {
-	width: min(100% - 2rem, var(--max-width));
+	width: min(100% - 4rem, var(--max-width));
 	margin-inline: auto;
 }
 

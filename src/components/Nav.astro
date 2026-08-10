@@ -2,15 +2,14 @@
 const pathname = Astro.url.pathname;
 
 const links = [
-	{ href: '/', label: 'Home', match: (path: string) => path === '/' },
 	{
-		href: '/work',
+		href: '/',
 		label: 'Work',
-		match: (path: string) => path === '/work' || path.startsWith('/work/'),
+		match: (path: string) => path === '/' || path === '/work' || path.startsWith('/work/'),
 	},
 	{
 		href: '/blog',
-		label: 'Blog',
+		label: 'Play',
 		match: (path: string) => path === '/blog' || path.startsWith('/blog/'),
 	},
 ];

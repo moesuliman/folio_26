@@ -1,6 +1,12 @@
 .project-card {
 	display: grid;
 	gap: var(--space-2);
+	position: relative;
+	z-index: 0;
+}
+
+.project-card:hover {
+	z-index: 1;
 }
 
 .project-card a {
@@ -8,17 +14,16 @@
 }
 
 .project-card__media {
-	overflow: hidden;
 	background: transparent;
 	/* Match Cargo thumbnail ratio (~445×590) */
 	aspect-ratio: 445 / 590;
-	border-radius: 0.5rem;
 }
 
 .project-card__media img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	border-radius: 0.5rem;
 	transition: transform 400ms ease;
 }
 
@@ -58,6 +63,42 @@
 	border-color: var(--color-headings);
 	background: var(--color-headings);
 	color: var(--palette-50);
+}
+
+/* Home: filters match former Featured work h2 size; weight only when active */
+.filters--heading {
+	display: inline-grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 1fr;
+	gap: var(--space-2);
+	margin-bottom: 0;
+}
+
+.filters--heading button {
+	width: 100%;
+	font-size: clamp(1.25rem, 2vw, 1.5rem);
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+	padding: 1rem 1rem 0.8rem;
+	white-space: nowrap;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.filters--heading button:not([aria-pressed='true']) {
+	border: none;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	background: #222;
+}
+
+.filters--heading button[aria-pressed='true'] {
+	font-weight: 500;
+	border-color: #000;
+	background: #000;
+	color: #fff;
 }
 
 .work-item[hidden] {
