@@ -1,0 +1,66 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+	src: string;
+	poster?: ImageMetadata;
+	caption?: string;
+	title?: string;
+}
+
+const { src, poster, caption, title = 'Project video' } = Astro.props;
+
+function toEmbedUrl(url: string): string {
+	try {
+		const parsed = new URL(url);
+
+		if (parsed.hostname.includes('youtube.com')) {
+			const id = parsed.searchParams.get('v');
+			if (id) return `https://www.youtube.com/embed/${id}`;
+		}
+
+		if (parsed.hostname === 'youtu.be') {
+			const id = parsed.pathname.slice(1);
+			if (id) return `https://www.youtube.com/embed/${id}`;
+		}
+
+		if (parsed.hostname.includes('vimeo.com')) {
+			const id = parsed.pathname.split('/').filter(Boolean).pop();
+			if (id) return `https://player.vimeo.com/video/${id}`;
+		}
+
+		// Mux / Cloudflare Stream / generic iframe-ready URLs pass through.
+		return url;
+	} catch {
+		return url;
+	}
+}
+
+const embedUrl = toEmbedUrl(src);
+---
+
+<figure class="video-block">
+	<div class="video-block__frame">
+		{
+			poster && (
+				<Image
+					src={poster}
+					alt=""
+					widths={[800, 1280]}
+					sizes="100vw"
+					class="video-block__poster"
+					loading="lazy"
+				/>
+			)
+		}
+		<iframe
+			src={embedUrl}
+			title={title}
+			loading="lazy"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen
+		></iframe>
+	</div>
+	{caption && <figcaption class="video-block__caption">{caption}</figcaption>}
+</figure>

@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Work" description="All product, brand, and art projects.">
+	<Nav slot="nav" />
+
+	<section class="hero">
+		<h1>Work</h1>
+		<p class="hero__lede">Filter by category, or browse everything in one place.</p>
+	</section>
+
+	<div class="filters" role="group" aria-label="Filter by category">
+		<button type="button" data-filter="all" aria-pressed="true">All</button>
+		<button type="button" data-filter="product" aria-pressed="false">Product</button>
+		<button type="button" data-filter="brand" aria-pressed="false">Brand</button>
+		<button type="button" data-filter="art" aria-pressed="false">Art</button>
+	</div>
+
+	<ul class="project-grid" id="work-grid">
+		{
+			projects.map((project) => (
+				<ProjectCard
+					href={`/work/${project.id}`}
+					title={project.data.title}
+					summary={project.data.summary}
+					cover={project.data.cover}
+					category={project.data.category}
+					year={project.data.year}
+				/>
+			))
+		}
+	</ul>
+
+	<Footer slot="footer" />
+</BaseLayout>
+
+<script>
+	const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
+	const items = document.querySelectorAll<HTMLElement>('.work-item');
+
+	buttons.forEach((button) => {
+		button.addEventListener('click', () => {
+			const filter = button.dataset.filter ?? 'all';
+
+			buttons.forEach((other) => {
+				other.setAttribute('aria-pressed', String(other === button));
+			});
+
+			items.forEach((item) => {
+				const category = item.dataset.category;
+				item.hidden = filter !== 'all' && category !== filter;
+			});
+		});
+	});
+</script>

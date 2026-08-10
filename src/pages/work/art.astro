@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects'))
+	.filter((project) => project.data.category === 'art')
+	.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Art" description="Personal art projects.">
+	<Nav slot="nav" />
+
+	<section class="hero">
+		<p class="hero__label"><a href="/work">Work</a> / Art</p>
+		<h1>Art</h1>
+	</section>
+
+	<ul class="project-grid">
+		{
+			projects.map((project) => (
+				<ProjectCard
+					href={`/work/${project.id}`}
+					title={project.data.title}
+					summary={project.data.summary}
+					cover={project.data.cover}
+					category={project.data.category}
+					year={project.data.year}
+				/>
+			))
+		}
+	</ul>
+
+	<Footer slot="footer" />
+</BaseLayout>

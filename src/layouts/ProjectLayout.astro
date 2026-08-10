@@ -1,0 +1,67 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ImageGrid from '../components/layout/ImageGrid.astro';
+import VideoBlock from '../components/layout/VideoBlock.astro';
+import TextBlock from '../components/layout/TextBlock.astro';
+import TwoCol from '../components/layout/TwoCol.astro';
+import FullBleed from '../components/layout/FullBleed.astro';
+import { getProjectImages } from '../lib/project-images';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const hasCustomBody = Boolean(project.body?.trim());
+const galleryImages = getProjectImages(project.data.category, project.id).filter(
+	(image) => !/\/cover\.[^/]+$/i.test(image.src),
+);
+---
+
+<BaseLayout title={project.data.title} description={project.data.summary}>
+	<Nav slot="nav" />
+
+	<article>
+		<header class="project-header">
+			<p class="project-header__meta">
+				<span>{project.data.category}</span>
+				<span>{project.data.year}</span>
+				{project.data.client && <span>{project.data.client}</span>}
+				{project.data.role && <span>{project.data.role}</span>}
+			</p>
+			<h1>{project.data.title}</h1>
+			<p class="hero__lede">{project.data.summary}</p>
+		</header>
+
+		<div class="project-body">
+			{
+				hasCustomBody ? (
+					<Content
+						components={{
+							ImageGrid,
+							VideoBlock,
+							TextBlock,
+							TwoCol,
+							FullBleed,
+						}}
+					/>
+				) : (
+					<>
+						<FullBleed image={project.data.cover} alt={project.data.title} />
+						<TextBlock>
+							<p>{project.data.summary}</p>
+						</TextBlock>
+						{galleryImages.length > 0 && <ImageGrid images={galleryImages} columns={2} />}
+					</>
+				)
+			}
+		</div>
+	</article>
+
+	<Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+title: Seat Map Redesign
+category: product
+year: 2025
+client: Sample Co
+role: Product Design
+tags:
+  - product
+  - ux
+cover: ./images/cover.png
+summary: A cleaner seat selection flow with clearer availability and faster confirmation.
+featured: true
+order: 1
+---
+
+import { Image } from 'astro:assets';
+import before from './images/before.png';
+import after from './images/after.png';
+import cover from './images/cover.png';
+
+<FullBleed image={cover} alt="Seat map redesign cover" />
+
+<TextBlock>
+  The brief was to reduce drop-off during seat selection without adding more steps. The redesign focused on hierarchy, scanability, and a calmer confirmation state.
+</TextBlock>
+
+<TwoCol>
+  <Image slot="left" src={before} alt="Before state" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={after} alt="After state" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<TextBlock>
+  Placeholder case study content for scaffolding. Replace with the real narrative and assets when ready.
+</TextBlock>
+
+<ImageGrid images={[before, after]} columns={2} />
