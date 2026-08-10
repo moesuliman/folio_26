@@ -1,0 +1,109 @@
+/* Typography — Inter hierarchy matching cvfolio’s weight/color usage */
+
+body {
+	font-family: var(--font-sans);
+	font-size: 1rem;
+	line-height: 1.6;
+	font-weight: 400;
+	color: var(--color-fg);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@supports (font-variation-settings: normal) {
+	body {
+		font-family: var(--font-sans-variable);
+		font-optical-sizing: auto;
+	}
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	color: var(--color-headings);
+}
+
+h1 {
+	font-size: clamp(1.75rem, 3vw, 2.25rem);
+	margin: 0 0 var(--space-3);
+}
+
+h2 {
+	font-size: clamp(1.25rem, 2vw, 1.5rem);
+	margin: 0 0 var(--space-3);
+}
+
+h3 {
+	font-size: 1.125rem;
+	margin: 0 0 var(--space-2);
+}
+
+p {
+	margin: 0 0 var(--space-3);
+}
+
+a {
+	color: inherit;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+}
+
+a:hover {
+	color: var(--color-headings);
+}
+
+strong {
+	font-weight: 600;
+	color: var(--color-headings);
+}
+
+.muted {
+	color: var(--color-muted);
+}
+
+.hero__label {
+	margin: 0 0 var(--space-2);
+	color: var(--color-muted);
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+
+.hero__lede {
+	max-width: 36rem;
+	color: var(--color-muted);
+	font-size: 1.0625rem;
+	line-height: 1.55;
+}
+
+.text-block {
+	max-width: var(--prose-width);
+	color: var(--color-fg);
+}
+
+.text-block :where(h1, h2, h3, h4, strong) {
+	color: var(--color-headings);
+}
+
+.text-block :where(p, ul, ol, li) {
+	color: var(--color-fg);
+}
+
+.project-card__title {
+	font-size: 1.125rem;
+	font-weight: 500;
+	color: var(--color-headings);
+	margin: 0;
+}
+
+.project-card__meta,
+.project-header__meta,
+.blog-list time,
+.video-block__caption {
+	color: var(--color-muted);
+	font-size: 0.875rem;
+}

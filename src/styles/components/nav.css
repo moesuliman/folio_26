@@ -1,0 +1,55 @@
+/* Floating pill nav — pattern from cvfolio, plain CSS */
+
+.site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 50;
+	display: flex;
+	justify-content: center;
+	padding-top: 1.25rem;
+	pointer-events: none;
+}
+
+.site-nav {
+	pointer-events: auto;
+	width: max-content;
+	max-width: calc(100vw - 2rem);
+	padding: 0.25rem;
+	border: 1px solid var(--color-line);
+	border-radius: var(--radius-pill);
+	background: var(--color-surface);
+	backdrop-filter: blur(var(--blur-nav));
+	-webkit-backdrop-filter: blur(var(--blur-nav));
+}
+
+.site-nav__links {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.site-nav__links a {
+	display: block;
+	padding: 0.5rem 1.25rem;
+	border-radius: var(--radius-pill);
+	text-decoration: none;
+	font-weight: 500;
+	color: var(--color-muted);
+	transition:
+		color var(--ease),
+		background-color var(--ease);
+}
+
+.site-nav__links a:hover {
+	color: var(--color-headings);
+}
+
+.site-nav__links a[aria-current='page'] {
+	color: var(--color-headings);
+	background: var(--color-surface-strong);
+}
