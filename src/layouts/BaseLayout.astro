@@ -4,9 +4,14 @@ import '../styles/global.css';
 interface Props {
 	title?: string;
 	description?: string;
+	flush?: boolean;
 }
 
-const { title = 'Moe Suliman', description = 'Product, brand, and art portfolio.' } = Astro.props;
+const {
+	title = 'Moe Suliman',
+	description = 'Product, brand, and art portfolio.',
+	flush = false,
+} = Astro.props;
 const pageTitle = title === 'Moe Suliman' ? title : `${title} — Moe Suliman`;
 ---
 
@@ -24,7 +29,7 @@ const pageTitle = title === 'Moe Suliman' ? title : `${title} — Moe Suliman`;
 	<body>
 		<div class="site-shell">
 			<slot name="nav" />
-			<main class="site-main">
+			<main class:list={['site-main', { 'site-main--flush': flush }]}>
 				<slot />
 			</main>
 			<slot name="footer" />

@@ -1,0 +1,51 @@
+---
+title: Shoudout App
+category: product
+year: 2016
+client: Shoudout / Infiltrate
+role: Branding & App Design
+tags:
+  - Product
+  - Brand
+cover: ./images/cover.png
+summary: Branding and app design for Shoudout, developed with Brandon Forant at Infiltrate.
+featured: false
+order: 16
+---
+
+import { Image } from 'astro:assets';
+import iosIcon from './images/01-ios-icon.png';
+import process1 from './images/02-process-1.png';
+import process2 from './images/03-process-2.png';
+import logo from './images/04-logo.png';
+import wordLogo from './images/05-word-logo.png';
+import iosIconAlt from './images/06-ios-icon-alt.png';
+import artboard2 from './images/07-artboard-2.jpg';
+import artboard21 from './images/08-artboard-2-1.jpg';
+
+<FullBleed image={iosIcon} alt="Shoudout iOS app icon exploration" />
+
+<TextBlock>
+  I worked on the branding and app design for Shoudout with Brandon Forant at Infiltrate. Here is a look at the branding process.
+</TextBlock>
+
+<TwoCol>
+  <Image slot="left" src={process1} alt="Shoudout branding process exploration" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={process2} alt="Shoudout branding process mark studies" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<TwoCol>
+  <Image slot="left" src={logo} alt="Shoudout logo mark" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={wordLogo} alt="Shoudout wordmark" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<FullBleed image={iosIconAlt} alt="Shoudout final iOS icon" />
+
+<TextBlock>
+  A couple of screens from the final version of the app.
+</TextBlock>
+
+<TwoCol>
+  <Image slot="left" src={artboard2} alt="Shoudout app screen" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={artboard21} alt="Shoudout app screen alternate" widths={[600, 900]} sizes="50vw" />
+</TwoCol>

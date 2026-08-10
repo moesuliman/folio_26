@@ -37,6 +37,7 @@
 	--space-7: 6rem;
 
 	--max-width: 72rem;
+	--full-bleed-max: calc(var(--max-width) * 1.25);
 	--prose-width: 40rem;
 	--nav-offset: 5.5rem;
 

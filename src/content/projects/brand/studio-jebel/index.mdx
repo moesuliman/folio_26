@@ -1,0 +1,46 @@
+---
+title: Studio Jebel
+category: brand
+year: 2022
+client: Studio Jebel
+role: Design & Art Direction
+tags:
+  - Brand
+  - Ecommerce
+  - Fashion
+cover: ./images/cover.png
+summary: Brand and merch design for Studio Jebel, a creative image production studio, in collaboration with Michael Collett.
+featured: false
+order: 15
+---
+
+import { Image } from 'astro:assets';
+import cover from './images/cover.png';
+import sj1 from './images/01-sj1.png';
+import sj2 from './images/02-sj2.png';
+import sj5 from './images/03-sj5.png';
+import sj6 from './images/04-sj6.png';
+import sj4 from './images/05-sj4.png';
+import sj3 from './images/06-sj3.png';
+
+<TextBlock>
+  A creative image production studio — Jebel.Studio
+</TextBlock>
+
+<TextBlock>
+  Role: Design & Art Direction, in collaboration with Michael Collett.
+</TextBlock>
+
+<FullBleed image={sj1} alt="Studio Jebel brand visual" />
+
+<TwoCol>
+  <Image slot="left" src={sj2} alt="Studio Jebel merch design" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={sj5} alt="Studio Jebel product photography" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<FullBleed image={sj6} alt="Studio Jebel campaign visual" />
+
+<TwoCol>
+  <Image slot="left" src={sj4} alt="Studio Jebel apparel" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={sj3} alt="Studio Jebel ecommerce visual" widths={[600, 900]} sizes="50vw" />
+</TwoCol>

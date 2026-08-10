@@ -29,10 +29,9 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 				<ProjectCard
 					href={`/work/${project.id}`}
 					title={project.data.title}
-					summary={project.data.summary}
 					cover={project.data.cover}
 					category={project.data.category}
-					year={project.data.year}
+					tags={project.data.tags}
 				/>
 			))
 		}

@@ -1,0 +1,38 @@
+---
+title: Digital Floristry
+category: brand
+year: 2016
+client: Paradise Alley Floristry
+role: Illustration & Poster Design
+tags:
+  - Brand
+  - Illustration
+cover: ./images/cover.png
+summary: A series of illustrations exploring color, mood, and mirroring for Paradise Alley Floristry.
+featured: false
+order: 21
+---
+
+import { Image } from 'astro:assets';
+import cover from './images/cover.png';
+import artboard from './images/01-artboard.png';
+import flower01 from './images/02-flower.png';
+import flower02 from './images/03-flower.png';
+import flower03 from './images/04-flower.png';
+import flower04 from './images/05-flower.png';
+
+<FullBleed image={artboard} alt="Paradise Alley Floristry artboard" />
+
+<TextBlock>
+  Paradise Alley Floristry — a series of illustration's exploring color, mood and mirroring.
+</TextBlock>
+
+<TwoCol>
+  <Image slot="left" src={flower02} alt="Digital floristry illustration" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={flower04} alt="Digital floristry illustration" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<TwoCol>
+  <Image slot="left" src={flower01} alt="Digital floristry illustration" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={flower03} alt="Digital floristry illustration" widths={[600, 900]} sizes="50vw" />
+</TwoCol>

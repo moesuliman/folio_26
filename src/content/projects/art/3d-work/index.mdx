@@ -1,0 +1,48 @@
+---
+title: 3D Work
+category: art
+year: 2017
+role: Personal
+tags:
+  - Art
+  - 3D
+  - Illustration
+cover: ./images/cover.png
+summary: A collection of daily 3D art studies spanning still life, characters, and surreal scenes.
+featured: false
+order: 13
+---
+
+import { Image } from 'astro:assets';
+import cover from './images/cover.png';
+import chain from './images/01-chain.png';
+import dirtyCup from './images/02-dirty-cup.png';
+import vase4 from './images/03-vase-4.png';
+import smileys from './images/04-Smileys-afternooon.png';
+import trashFlower from './images/05-trash-flower.png';
+import mountainScene from './images/06-mountain-scene.png';
+import vase from './images/07-vase.png';
+
+<TextBlock>
+  A collection of my 3D art. You can see more of this on my Instagram, @halal.harami. If you use Ello, I'm also on there as @mos.
+</TextBlock>
+
+<TextBlock>
+  I try to post daily. Or at least every business day.
+</TextBlock>
+
+<FullBleed image={chain} alt="3D chain still life" />
+
+<TwoCol>
+  <Image slot="left" src={dirtyCup} alt="3D dirty cup still life" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={vase4} alt="3D vase still life" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<FullBleed image={smileys} alt="3D smiley face afternoon scene" />
+
+<TwoCol>
+  <Image slot="left" src={trashFlower} alt="3D trash flower" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={mountainScene} alt="3D mountain scene" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<FullBleed image={vase} alt="3D vase composition" />

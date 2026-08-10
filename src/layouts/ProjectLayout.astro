@@ -10,6 +10,7 @@ import TextBlock from '../components/layout/TextBlock.astro';
 import TwoCol from '../components/layout/TwoCol.astro';
 import FullBleed from '../components/layout/FullBleed.astro';
 import { getProjectImages } from '../lib/project-images';
+import { displayTags } from '../lib/project-tags';
 
 interface Props {
 	project: CollectionEntry<'projects'>;
@@ -21,15 +22,16 @@ const hasCustomBody = Boolean(project.body?.trim());
 const galleryImages = getProjectImages(project.data.category, project.id).filter(
 	(image) => !/\/cover\.[^/]+$/i.test(image.src),
 );
+const tags = displayTags(project.data.tags);
 ---
 
-<BaseLayout title={project.data.title} description={project.data.summary}>
+<BaseLayout title={project.data.title} description={project.data.summary} flush>
 	<Nav slot="nav" />
 
 	<article>
 		<header class="project-header">
 			<p class="project-header__meta">
-				<span>{project.data.category}</span>
+				{tags.map((tag) => <span>{tag}</span>)}
 				<span>{project.data.year}</span>
 				{project.data.client && <span>{project.data.client}</span>}
 				{project.data.role && <span>{project.data.role}</span>}

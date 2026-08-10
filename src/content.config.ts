@@ -1,5 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { PROJECT_TAGS } from './lib/project-tags';
+
+const projectTag = z.enum(PROJECT_TAGS as unknown as [string, ...string[]]);
 
 const projects = defineCollection({
 	loader: glob({
@@ -17,7 +20,7 @@ const projects = defineCollection({
 			year: z.number(),
 			client: z.string().optional(),
 			role: z.string().optional(),
-			tags: z.array(z.string()).default([]),
+			tags: z.array(projectTag).min(1),
 			cover: image(),
 			summary: z.string(),
 			featured: z.boolean().default(false),

@@ -11,5 +11,11 @@ const { image, alt = '' } = Astro.props;
 ---
 
 <figure class="full-bleed">
-	<Image src={image} alt={alt} widths={[960, 1440, 1920]} sizes="100vw" loading="lazy" />
+	<Image
+		src={image}
+		alt={alt}
+		widths={[960, 1440, 1920]}
+		sizes="(max-width: 90rem) 100vw, 90rem"
+		loading="lazy"
+	/>
 </figure>

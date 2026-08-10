@@ -9,8 +9,9 @@
 
 .project-card__media {
 	overflow: hidden;
-	background: var(--palette-200);
-	aspect-ratio: 4 / 3;
+	background: #000;
+	/* Match Cargo thumbnail ratio (~445×590) */
+	aspect-ratio: 445 / 590;
 	border-radius: 0.5rem;
 }
 
@@ -122,13 +123,14 @@
 }
 
 .full-bleed {
-	width: 100%;
+	width: min(100%, var(--full-bleed-max));
+	margin-inline: auto;
+	margin-block: 0;
 }
 
 .full-bleed img {
 	width: 100%;
-	max-height: 85vh;
-	object-fit: cover;
+	height: auto;
 }
 
 .two-col {

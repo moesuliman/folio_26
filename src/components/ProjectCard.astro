@@ -1,17 +1,18 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import { displayTags } from '../lib/project-tags';
 
 interface Props {
 	href: string;
 	title: string;
-	summary: string;
 	cover: ImageMetadata;
 	category: string;
-	year: number;
+	tags: string[];
 }
 
-const { href, title, summary, cover, category, year } = Astro.props;
+const { href, title, cover, category, tags } = Astro.props;
+const visibleTags = displayTags(tags, 3);
 ---
 
 <li class="project-card work-item" data-category={category}>
@@ -19,11 +20,9 @@ const { href, title, summary, cover, category, year } = Astro.props;
 		<div class="project-card__media">
 			<Image src={cover} alt="" widths={[480, 800]} sizes="(max-width: 720px) 100vw, 33vw" loading="lazy" />
 		</div>
-		<p class="project-card__meta">
-			<span>{category}</span>
-			<span>{year}</span>
-		</p>
 		<h2 class="project-card__title">{title}</h2>
-		<p class="muted">{summary}</p>
+		<p class="project-card__meta">
+			{visibleTags.map((tag) => <span>{tag}</span>)}
+		</p>
 	</a>
 </li>

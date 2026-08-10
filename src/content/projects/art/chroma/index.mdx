@@ -1,0 +1,33 @@
+---
+title: Chroma
+category: art
+year: 2017
+role: 3D Art
+tags:
+  - Art
+  - 3D
+cover: ./images/cover.png
+summary: A collection of 3D work exploring soft body dynamics, inspired by Japanese artist Hajime Soriyama.
+featured: false
+order: 22
+---
+
+import { Image } from 'astro:assets';
+import cover from './images/cover.png';
+import ripped01 from './images/01-rippedcloth.png';
+import ripped02 from './images/02-rippedcloth.png';
+import softBody from './images/03-soft-body.png';
+import chromaGif from './images/04-chroma.gif';
+
+<FullBleed image={ripped01} alt="Chroma ripped cloth render" />
+
+<TextBlock>
+  A collection of 3D work exploring soft body dynamics. Inspired by the work of Japanese artist Hajime Soriyama.
+</TextBlock>
+
+<TwoCol>
+  <Image slot="left" src={ripped02} alt="Chroma soft body cloth study" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={softBody} alt="Chroma soft body form" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<FullBleed image={chromaGif} alt="Chroma motion study" />

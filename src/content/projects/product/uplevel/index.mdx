@@ -1,0 +1,43 @@
+---
+title: UpLevel
+category: product
+year: 2016
+client: UpLevel / Infiltrate
+role: Illustration & Icon Design
+tags:
+  - Product
+  - Illustration
+cover: ./images/cover.png
+summary: Illustration and icon design for Uplevel, a cyber security web app, including marketing-site visuals and app work with Infiltrate.
+featured: false
+order: 18
+---
+
+import { Image } from 'astro:assets';
+import welcome from './images/01-welcome.jpg';
+import iosIcon from './images/02-ios-icon.jpg';
+import illo1 from './images/03-illustration-1.jpg';
+import illo2 from './images/04-illustration-2.jpg';
+import illo3 from './images/05-illustration-3.jpg';
+import illo4 from './images/06-illustration-4.jpg';
+import illo5 from './images/07-illustration-5.jpg';
+
+<FullBleed image={welcome} alt="Uplevel welcome illustration" />
+
+<TextBlock>
+  Illustration and icon design for Uplevel, a cyber security web app. These illustrations and icons were intended for use on their marketing site. I also had the pleasure of working on their app design with Brandon Forant at Infiltrate.
+</TextBlock>
+
+<FullBleed image={iosIcon} alt="Uplevel iOS icon" />
+
+<TwoCol>
+  <Image slot="left" src={illo1} alt="Uplevel illustration" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={illo2} alt="Uplevel illustration" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<TwoCol>
+  <Image slot="left" src={illo3} alt="Uplevel illustration" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={illo4} alt="Uplevel illustration" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<FullBleed image={illo5} alt="Uplevel illustration" />
