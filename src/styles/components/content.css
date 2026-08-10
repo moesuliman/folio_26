@@ -9,7 +9,7 @@
 
 .project-card__media {
 	overflow: hidden;
-	background: #000;
+	background: transparent;
 	/* Match Cargo thumbnail ratio (~445×590) */
 	aspect-ratio: 445 / 590;
 	border-radius: 0.5rem;
@@ -154,7 +154,7 @@
 .video-block__frame {
 	position: relative;
 	aspect-ratio: 16 / 9;
-	background: var(--palette-900);
+	background: #171717;
 	overflow: hidden;
 }
 

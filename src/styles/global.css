@@ -1,4 +1,5 @@
 @import './tokens.css';
+/* Light palette kept in tokens-light.css — not applied until we surface a theme switch */
 @import './fonts.css';
 @import './base.css';
 @import './typography.css';

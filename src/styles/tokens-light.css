@@ -1,0 +1,20 @@
+/* Light palette — unused until a theme switch surfaces it */
+
+@media (prefers-color-scheme: light) {
+	:root {
+		color-scheme: light;
+
+		--palette-base: #fff;
+		--palette-50: #fafafa;
+		--palette-100: #f5f5f5;
+		--palette-200: #e5e5e5;
+		--palette-300: #d4d4d4;
+		--palette-400: #a3a3a3;
+		--palette-500: #737373;
+		--palette-600: #525252;
+		--palette-700: #404040;
+		--palette-800: #262626;
+		--palette-900: #171717;
+		--palette-950: #0a0a0a;
+	}
+}
