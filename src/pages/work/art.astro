@@ -6,7 +6,7 @@ import Footer from '../../components/Footer.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 
 const projects = (await getCollection('projects'))
-	.filter((project) => project.data.category === 'art')
+	.filter((project) => project.data.category === 'art' && !project.data.hidden)
 	.sort((a, b) => a.data.order - b.data.order);
 ---
 

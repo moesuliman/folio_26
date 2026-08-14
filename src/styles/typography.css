@@ -78,6 +78,7 @@ strong {
 	color: var(--color-muted);
 	font-size: 1.0625rem;
 	line-height: 1.55;
+	text-wrap: balance;
 }
 
 .hero__lede + .hero__lede {

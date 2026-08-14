@@ -9,9 +9,10 @@ tags:
   - Marketing
   - Fashion
 cover: ./images/cover.png
+coverBg: white
 summary: Campaign look and design for Nike Dare to Air, developed while freelancing with Thousands Creative in collaboration with Finish Line.
 featured: true
-order: 3
+order: 4
 ---
 
 import { Image } from 'astro:assets';
@@ -21,13 +22,9 @@ import windowImg from './images/02-window.png';
 import mccoy from './images/03-air-max-mccoy.jpg';
 import airMax from './images/04-air-max.jpg';
 
-<FullBleed image={campaign} alt="Nike Dare to Air campaign visual" />
+<SemiFull image={campaign} alt="Nike Dare to Air campaign visual" />
 
-<TextBlock>
-  A campaign I worked on while freelancing for the lovely folks at Thousands Creative. I worked on the look and design for the initial pitch and the campaign. This was done in collaboration with Finishline.
-</TextBlock>
-
-<FullBleed image={windowImg} alt="Nike Dare to Air window display" />
+<SemiFull image={windowImg} alt="Nike Dare to Air window display" />
 
 <TwoCol>
   <Image slot="left" src={mccoy} alt="Nike Air Max 2015 McCoy" widths={[600, 900]} sizes="50vw" />

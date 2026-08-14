@@ -10,7 +10,7 @@ tags:
 cover: ./images/cover.png
 summary: Product design for Fi, the smart dog collar — spanning ecomm, social ads, and email while Sr. Product Designer at tryfi.com.
 featured: false
-order: 10
+order: 8
 ---
 
 import { Image } from 'astro:assets';
@@ -23,10 +23,10 @@ import bf21Email from './images/06-bf21-email.gif';
 import k9VetWeek from './images/07-k9-vet-week.gif';
 
 <TextBlock>
-  Fi, smart dog collar — tryfi.com. Role: Sr. Product Designer (Feb '19–Dec '21).
+  <p>Fi, smart dog collar — <a href="https://tryfi.com">tryfi.com</a>.<br />Role: Sr. Product Designer (Feb '19–Dec '21).</p>
 </TextBlock>
 
-<FullBleed image={fi001} alt="Fi product design screen" />
+<SemiFull image={fi001} alt="Fi product design screen" />
 
 <TwoCol>
   <Image slot="left" src={fi002} alt="Fi product interface" widths={[600, 900]} sizes="50vw" />
@@ -38,11 +38,9 @@ import k9VetWeek from './images/07-k9-vet-week.gif';
   <Image slot="right" src={fi005} alt="Fi product interface" widths={[600, 900]} sizes="50vw" />
 </TwoCol>
 
-<TextBlock>
-  Emails
-</TextBlock>
-
-<TwoCol>
-  <Image slot="left" src={bf21Email} alt="Fi email design animation" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={k9VetWeek} alt="Fi K9 vet week email animation" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+<Section title="Emails">
+  <TwoCol>
+    <Image slot="left" src={bf21Email} alt="Fi email design animation" widths={[600, 900]} sizes="50vw" />
+    <Image slot="right" src={k9VetWeek} alt="Fi K9 vet week email animation" widths={[600, 900]} sizes="50vw" />
+  </TwoCol>
+</Section>

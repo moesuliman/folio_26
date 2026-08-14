@@ -9,7 +9,7 @@ tags:
 cover: ./images/cover.png
 summary: Branding for Swedish artist Sandra Shebitz.
 featured: false
-order: 17
+order: 12
 ---
 
 import { Image } from 'astro:assets';
@@ -20,10 +20,10 @@ import gallery6 from './images/04-swea_gallery_web-6.png';
 import gallery7 from './images/05-swea_gallery_web-7.png';
 import gallery9 from './images/06-swea_gallery_web-9.png';
 
-<FullBleed image={gallery1} alt="SWEA Gallery brand visual" />
+<SemiFull image={gallery1} alt="SWEA Gallery brand visual" />
 
 <TextBlock>
-  Branding for Swedish artist Sandra Shebitz.
+  <p></p>
 </TextBlock>
 
 <TwoCol>
@@ -36,4 +36,4 @@ import gallery9 from './images/06-swea_gallery_web-9.png';
   <Image slot="right" src={gallery7} alt="SWEA Gallery identity detail" widths={[600, 900]} sizes="50vw" />
 </TwoCol>
 
-<FullBleed image={gallery9} alt="SWEA Gallery brand lockup" />
+<SemiFull image={gallery9} alt="SWEA Gallery brand lockup" />

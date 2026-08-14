@@ -13,22 +13,13 @@ featured: false
 order: 20
 ---
 
-import { Image } from 'astro:assets';
 import cover from './images/cover.png';
 import glitchcube from './images/01-glitchcube.png';
 import spheres from './images/02-spheres.png';
 import full from './images/03-full.png';
-import glitchcube2 from './images/04-glitchcube.jpg';
 
 <FullBleed image={glitchcube} alt="Virtual Topiary glitch cube" />
 
-<TextBlock>
-  A collection of 3d illustrations.
-</TextBlock>
+<SemiFull image={full} alt="Virtual Topiary full composition" half />
 
-<TwoCol>
-  <Image slot="left" src={spheres} alt="Virtual Topiary spheres" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={full} alt="Virtual Topiary full composition" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
-
-<FullBleed image={glitchcube2} alt="Virtual Topiary glitch cube render" />
+<FullBleed image={spheres} alt="Virtual Topiary spheres" />

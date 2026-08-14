@@ -1,0 +1,54 @@
+---
+title: KYD Labs
+category: brand
+year: 2025
+client: KYD Labs
+role: Brand Design
+tags:
+  - Brand
+  - Marketing
+cover: ./images/cover.png
+coverBg: white
+summary: Brand assets for KYD Labs, the platform venues use to run and market live events. Posters, social, and campaign visuals.
+featured: false
+order: 2
+---
+
+import { Image } from 'astro:assets';
+import lpr1 from './images/kyd_lpr_1.png';
+import lpr2 from './images/kyd_lpr_2.png';
+import asiaSemiFull1 from './images/kyd_asia_semi_full_1.png';
+import asia1 from './images/kyd_asia_1.png';
+import asia2 from './images/kyd_asia_2.png';
+import asiaSemiFull2 from './images/kyd_asia_semi_full_2.png';
+import sol1 from './images/kyd_sol_1.png';
+import sol2 from './images/kyd_sol_2.png';
+import poster1 from './images/kyd_poster_1.png';
+import poster2 from './images/kyd_poster_2.png';
+import midnightBrave from './images/kyd_midnight_brave.png';
+
+<TwoCol>
+  <Image slot="left" src={lpr1} alt="KYD brand visual" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={lpr2} alt="KYD brand visual" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<SemiFull image={asiaSemiFull1} alt="KYD Asia campaign visual" />
+
+<TwoCol>
+  <Image slot="left" src={asia1} alt="KYD Asia brand asset" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={asia2} alt="KYD Asia brand asset" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<SemiFull image={asiaSemiFull2} alt="KYD Asia campaign visual" />
+
+<TwoCol>
+  <Image slot="left" src={sol1} alt="KYD Sol campaign visual" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={sol2} alt="KYD Sol campaign visual" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<TwoCol>
+  <Image slot="left" src={poster1} alt="KYD poster design" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={poster2} alt="KYD poster design" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<SemiFull image={midnightBrave} alt="KYD Midnight Brave campaign visual" />

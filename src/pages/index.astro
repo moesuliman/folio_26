@@ -6,7 +6,9 @@ import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getLatestListenLabel } from '../lib/listenbrainz';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const projects = (await getCollection('projects'))
+	.filter((project) => !project.data.hidden)
+	.sort((a, b) => a.data.order - b.data.order);
 
 // Latest listen from ListenBrainz at build time (see LISTENBRAINZ_USERNAME).
 const latestListen = await getLatestListenLabel();
@@ -20,34 +22,28 @@ const latestListen = await getLatestListenLabel();
 			<img src="/logo_w.png" alt="" width="160" height="107" />
 		</a>
 		<h1>Mohamed Suliman</h1>
-		<p class="hero__bio">
-			Multidisciplinary designer with 12+ years of experience. I work with early stage startups on
-			0 to 1 product and brand design.
-			<br /><br />
-			Currently: Founding Designer at <a href="https://kydlabs.com">KYD Labs</a>, building the
-			brand and software venues use to run &amp; market live events.
-			<br /><br />
-			Previously: 12+ years of product and visual work for startups, brands and studios.
-		</p>
+		<div class="hero__bio">
+			<p>
+				I design product and brand for early-stage startups and small independent businesses, usually
+				ones with something real that isn't all the way there yet. Twelve years in, the balance is
+				different every time, so I go where the business goes furthest. I like to work directly with
+				founders to get there.
+			</p>
+			<p>
+				<strong class="hero__bio-current">Currently</strong>
+				Founding Designer at <a href="https://kydlabs.com">KYD Labs</a>, building the brand and
+				software venues use to run &amp; market live events.
+			</p>
+		</div>
 		<div class="hero__meta">
 			<div class="hero__meta-col">
 				<p>moe@moesuliman.com</p>
 				<p class="hero__meta-socials">
-					<a href="https://www.linkedin.com/in/moe-suliman">
-						<span class="hero__social-icon">
-							<img src="/icons/linkedin.svg" alt="LinkedIn" width="12" height="12" />
-						</span>
-					</a>
-					<a href="https://x.com/mo__786">
-						<span class="hero__social-icon">
-							<img src="/icons/x.svg" alt="X" width="12" height="12" />
-						</span>
-					</a>
-					<a href="https://instagram.com/halal.harami">
-						<span class="hero__social-icon">
-							<img src="/icons/instagram.svg" alt="Instagram" width="12" height="12" />
-						</span>
-					</a>
+					<a href="https://www.linkedin.com/in/moe-suliman">Linkedin</a>
+					<span class="hero__meta-sep" aria-hidden="true">·</span>
+					<a href="https://instagram.com/halal.harami">Instagram</a>
+					<span class="hero__meta-sep" aria-hidden="true">·</span>
+					<a href="https://x.com/mo__786">X</a>
 				</p>
 			</div>
 			<div class="hero__meta-col">

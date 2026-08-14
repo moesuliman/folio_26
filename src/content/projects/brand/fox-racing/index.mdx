@@ -1,0 +1,51 @@
+---
+title: Fox Racing
+category: brand
+year: 2024
+client: Fox Racing
+role: Visual & Graphic Design
+tags:
+  - Brand
+  - Sport
+  - Visual
+cover: ./images/cover.jpg
+coverBg: white
+summary: Visual and graphic work for Fox Racing, referencing vintage fox logo marks with contemporary patterns and aesthetic, in collaboration with Michael Collett at SR*.
+featured: false
+order: 3
+---
+
+import { Image } from 'astro:assets';
+import fox1 from './images/fox_1.jpg';
+import fox2 from './images/fox_2.jpg';
+import foxB1a from './images/fox_b_1a.jpg';
+import foxB1b from './images/fox_b_1b.jpg';
+import foxB2 from './images/fox_b_2_semi_full.png';
+import foxC1a from './images/fox_c_1a.jpg';
+import foxC1b from './images/fox_c_1b.jpg';
+import foxC from './images/fox_c_semi_full.png';
+import foxD1a from './images/fox_d_1a.jpg';
+import foxD1b from './images/fox_d_1b.jpg';
+
+<SemiFull image={fox1} alt="Fox Racing visual" />
+
+<TwoCol>
+  <Image slot="left" src={foxC1a} alt="Fox Racing graphic" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={foxC1b} alt="Fox Racing graphic" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<SemiFull image={fox2} alt="Fox Racing visual" />
+
+<TwoCol>
+  <Image slot="left" src={foxB1a} alt="Fox Racing graphic" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={foxB1b} alt="Fox Racing graphic" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<SemiFull image={foxB2} alt="Fox Racing campaign visual" />
+
+<SemiFull image={foxC} alt="Fox Racing campaign visual" />
+
+<TwoCol>
+  <Image slot="left" src={foxD1a} alt="Fox Racing graphic" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={foxD1b} alt="Fox Racing graphic" widths={[600, 900]} sizes="50vw" />
+</TwoCol>

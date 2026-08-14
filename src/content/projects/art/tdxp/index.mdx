@@ -1,0 +1,40 @@
+---
+title: TDXP
+category: art
+year: 2024
+role: Personal
+tags:
+  - Art
+  - Touch Designer
+cover: ./images/cover.jpg
+coverBg: white
+summary: Audio-reactive art made in TouchDesigner. I pull specific frames from live generative runs and build them into finished pieces.
+featured: false
+order: 6
+---
+
+import { Image } from 'astro:assets';
+import td2a from './images/td_2a.jpg';
+import td2b from './images/td_2b.jpg';
+import td1a from './images/td_1a.jpg';
+import td1b from './images/td_1b.jpg';
+import td3a from './images/td_3a.jpg';
+import td3b from './images/td_3b.jpg';
+import td4 from './images/td_4.jpg';
+
+<TwoCol>
+  <Image slot="left" src={td2a} alt="TouchDesigner audio-reactive art" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={td2b} alt="TouchDesigner audio-reactive art" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<TwoCol>
+  <Image slot="left" src={td1a} alt="TouchDesigner audio-reactive art" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={td1b} alt="TouchDesigner audio-reactive art" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<TwoCol>
+  <Image slot="left" src={td3a} alt="TouchDesigner audio-reactive art" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={td3b} alt="TouchDesigner audio-reactive art" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<SemiFull image={td4} alt="TouchDesigner audio-reactive art" />

@@ -14,7 +14,6 @@ featured: false
 order: 15
 ---
 
-import { Image } from 'astro:assets';
 import cover from './images/cover.png';
 import sj1 from './images/01-sj1.png';
 import sj2 from './images/02-sj2.png';
@@ -23,24 +22,14 @@ import sj6 from './images/04-sj6.png';
 import sj4 from './images/05-sj4.png';
 import sj3 from './images/06-sj3.png';
 
-<TextBlock>
-  A creative image production studio — Jebel.Studio
-</TextBlock>
+<SemiFull image={sj1} alt="Studio Jebel brand visual" />
 
-<TextBlock>
-  Role: Design & Art Direction, in collaboration with Michael Collett.
-</TextBlock>
+<SemiFull image={sj2} alt="Studio Jebel merch design" />
 
-<FullBleed image={sj1} alt="Studio Jebel brand visual" />
+<SemiFull image={sj5} alt="Studio Jebel product photography" />
 
-<TwoCol>
-  <Image slot="left" src={sj2} alt="Studio Jebel merch design" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={sj5} alt="Studio Jebel product photography" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+<SemiFull image={sj6} alt="Studio Jebel campaign visual" />
 
-<FullBleed image={sj6} alt="Studio Jebel campaign visual" />
+<SemiFull image={sj4} alt="Studio Jebel apparel" />
 
-<TwoCol>
-  <Image slot="left" src={sj4} alt="Studio Jebel apparel" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={sj3} alt="Studio Jebel ecommerce visual" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+<SemiFull image={sj3} alt="Studio Jebel ecommerce visual" />

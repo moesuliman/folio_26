@@ -8,7 +8,7 @@ tags:
   - Brand
   - Music
 cover: ./images/cover.png
-summary: Website for legendary dancehall artist NinjaMan — designed and developed end to end.
+summary: Website for legendary dancehall artist NinjaMan, designed and developed end to end.
 featured: false
 order: 14
 ---
@@ -20,19 +20,11 @@ import music from './images/02-music.png';
 import videoPhoto from './images/03-video-photo.png';
 import show from './images/04-show.png';
 
-<TextBlock>
-  Website for legendary dancehall artist NinjaMan. Designed and developed by me.
-</TextBlock>
-
-<TextBlock>
-  NinjamanMusic.com
-</TextBlock>
-
-<FullBleed image={home} alt="Ninjaman website home page" />
+<SemiFull image={home} alt="Ninjaman website home page" />
 
 <TwoCol>
-  <Image slot="left" src={music} alt="Ninjaman music page" widths={[600, 900]} sizes="50vw" />
+  <Image slot="left" src={show} alt="Ninjaman shows page" widths={[600, 900]} sizes="50vw" />
   <Image slot="right" src={videoPhoto} alt="Ninjaman video and photo page" widths={[600, 900]} sizes="50vw" />
 </TwoCol>
 
-<FullBleed image={show} alt="Ninjaman shows page" />
+<SemiFull image={music} alt="Ninjaman music page" />

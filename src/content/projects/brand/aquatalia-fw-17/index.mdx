@@ -8,12 +8,12 @@ tags:
   - Brand
   - Fashion
 cover: ./images/cover.gif
+coverBg: white
 summary: Print and campaign design for Aquatalia fall & winter 2017 ads, with art direction by Stefan Campbell at SXSC.
 featured: false
-order: 11
+order: 9
 ---
 
-import { Image } from 'astro:assets';
 import logo from './images/01-logo.png';
 import pair1 from './images/02-pair-1.png';
 import pair2 from './images/03-pair-2.png';
@@ -24,14 +24,11 @@ import pair4 from './images/05-pair-4.png';
   Design for Aquatalia fall & winter 2017 ads. Role: Graphic Designer. Art Director: Stefan Campbell, SXSC. Photographer: Jamie Alac. Retoucher: Circahere. Producer: Tim Duffy.
 </TextBlock>
 
-<FullBleed image={logo} alt="Aquatalia FW 17 logo treatment" />
+<SemiFull image={logo} alt="Aquatalia FW 17 logo treatment" />
 
-<TwoCol>
-  <Image slot="left" src={pair1} alt="Aquatalia FW 17 footwear pair" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={pair2} alt="Aquatalia FW 17 footwear pair" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
-
-<TwoCol>
-  <Image slot="left" src={pair3} alt="Aquatalia FW 17 footwear pair" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={pair4} alt="Aquatalia FW 17 footwear pair" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+<Stack>
+  <SemiFull image={pair1} alt="Aquatalia FW 17 footwear pair" />
+  <SemiFull image={pair2} alt="Aquatalia FW 17 footwear pair" />
+  <SemiFull image={pair3} alt="Aquatalia FW 17 footwear pair" />
+  <SemiFull image={pair4} alt="Aquatalia FW 17 footwear pair" />
+</Stack>

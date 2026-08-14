@@ -8,12 +8,12 @@ tags:
   - 3D
   - Illustration
 cover: ./images/cover.png
-summary: A collection of daily 3D art studies spanning still life, characters, and surreal scenes.
+coverBg: white
+summary: A collection of 3D art studies spanning still life, characters, and surreal scenes.
 featured: false
 order: 13
 ---
 
-import { Image } from 'astro:assets';
 import cover from './images/cover.png';
 import chain from './images/01-chain.png';
 import dirtyCup from './images/02-dirty-cup.png';
@@ -23,26 +23,16 @@ import trashFlower from './images/05-trash-flower.png';
 import mountainScene from './images/06-mountain-scene.png';
 import vase from './images/07-vase.png';
 
-<TextBlock>
-  A collection of my 3D art. You can see more of this on my Instagram, @halal.harami. If you use Ello, I'm also on there as @mos.
-</TextBlock>
+<SemiFull image={vase4} alt="3D vase still life" />
 
-<TextBlock>
-  I try to post daily. Or at least every business day.
-</TextBlock>
+<SemiFull image={trashFlower} alt="3D trash flower" />
 
-<FullBleed image={chain} alt="3D chain still life" />
+<SemiFull image={chain} alt="3D chain still life" />
 
-<TwoCol>
-  <Image slot="left" src={dirtyCup} alt="3D dirty cup still life" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={vase4} alt="3D vase still life" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+<SemiFull image={dirtyCup} alt="3D dirty cup still life" />
 
-<FullBleed image={smileys} alt="3D smiley face afternoon scene" />
+<SemiFull image={smileys} alt="3D smiley face afternoon scene" />
 
-<TwoCol>
-  <Image slot="left" src={trashFlower} alt="3D trash flower" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={mountainScene} alt="3D mountain scene" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+<SemiFull image={mountainScene} alt="3D mountain scene" />
 
-<FullBleed image={vase} alt="3D vase composition" />
+<SemiFull image={vase} alt="3D vase composition" />

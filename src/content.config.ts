@@ -25,6 +25,7 @@ const projects = defineCollection({
 			coverBg: z.enum(['black', 'white']).default('black'),
 			summary: z.string(),
 			featured: z.boolean().default(false),
+			hidden: z.boolean().default(false),
 			order: z.number().default(0),
 			videoUrl: z.string().url().optional(),
 		}),
