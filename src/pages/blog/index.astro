@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { withBase } from '../../lib/base-url';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
@@ -31,7 +32,7 @@ const posts = (await getCollection('blog')).sort(
 						</time>
 					</p>
 					<h2>
-						<a href={`/blog/${post.id}`}>{post.data.title}</a>
+						<a href={withBase(`/blog/${post.id}`)}>{post.data.title}</a>
 					</h2>
 					<p>{post.data.summary}</p>
 				</li>

@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import { withBase } from '../lib/base-url';
 import { displayTags } from '../lib/project-tags';
 
 interface Props {
@@ -17,7 +18,7 @@ const visibleTags = displayTags(tags, 3);
 ---
 
 <li class="project-card work-item" data-category={category}>
-	<a href={href}>
+	<a href={withBase(href)}>
 		<div class:list={['project-card__media', `project-card__media--${coverBg}`]}>
 			<Image src={cover} alt="" widths={[480, 800]} sizes="(max-width: 720px) 100vw, 33vw" loading="lazy" />
 		</div>

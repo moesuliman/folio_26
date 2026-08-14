@@ -5,6 +5,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getLatestListenLabel } from '../lib/listenbrainz';
+import { withBase } from '../lib/base-url';
 
 const projects = (await getCollection('projects'))
 	.filter((project) => !project.data.hidden)
@@ -18,8 +19,8 @@ const latestListen = await getLatestListenLabel();
 	<Nav slot="nav" />
 
 	<section class="hero hero--intro site-measure">
-		<a class="hero__logo" href="/" aria-label="Moe Suliman home">
-			<img src="/logo_w.png" alt="" width="160" height="107" />
+		<a class="hero__logo" href={withBase('/')} aria-label="Moe Suliman home">
+			<img src={withBase('/logo_w.png')} alt="" width="160" height="107" />
 		</a>
 		<h1>Mohamed Suliman</h1>
 		<div class="hero__bio">

@@ -15,6 +15,7 @@ import Stack from '../components/layout/Stack.astro';
 import Section from '../components/layout/Section.astro';
 import { getProjectImages } from '../lib/project-images';
 import { displayTags } from '../lib/project-tags';
+import { withBase } from '../lib/base-url';
 
 interface Props {
 	project: CollectionEntry<'projects'>;
@@ -40,9 +41,9 @@ const tags = displayTags(project.data.tags);
 	<article>
 		<header class="project-header">
 			<div class="project-header__bar">
-				<a class="project-back" href="/">← Projects</a>
-				<a class="project-logo" href="/" aria-label="Moe Suliman home">
-					<img src="/logo_w.png" alt="" width="160" height="107" />
+				<a class="project-back" href={withBase('/')}>← Projects</a>
+				<a class="project-logo" href={withBase('/')} aria-label="Moe Suliman home">
+					<img src={withBase('/logo_w.png')} alt="" width="160" height="107" />
 				</a>
 			</div>
 			<p class="project-header__meta">

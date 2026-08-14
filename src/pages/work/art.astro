@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { withBase } from '../../lib/base-url';
 import ProjectCard from '../../components/ProjectCard.astro';
 
 const projects = (await getCollection('projects'))
@@ -14,7 +15,7 @@ const projects = (await getCollection('projects'))
 	<Nav slot="nav" />
 
 	<section class="hero">
-		<p class="hero__label"><a href="/work">Work</a> / Art</p>
+		<p class="hero__label"><a href={withBase('/work')}>Work</a> / Art</p>
 		<h1>Art</h1>
 	</section>
 
