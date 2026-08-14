@@ -1,0 +1,57 @@
+---
+title: Pesoreal - Marketing
+category: brand
+year: 2023
+client: Pesoreal Import Export Limited
+role: Brand Design & Art Direction
+tags:
+  - Brand
+  - Furniture
+  - Art Direction
+cover: ./images/cover.png
+coverBg: white
+summary: Marketing assets and art direction for Pesoreal, primarily for Meta ads and a print mailer catalog, in collaboration with Michael Collett at SR*.
+featured: false
+order: 2
+---
+
+import { Image } from 'astro:assets';
+import mkt3 from './images/01-mkt-3.png';
+import mkt1 from './images/02-mkt-1.png';
+import mkt2 from './images/03-mkt-2.png';
+import posterFull from './images/04-poster-full.png';
+import posterClip1 from './images/05-poster-clip-1.png';
+import posterClip2 from './images/06-poster-clip-2.png';
+import social1 from './images/07-social-1.png';
+import social2 from './images/08-social-2.png';
+import social3 from './images/09-social-3.png';
+import social4 from './images/10-social-4.png';
+import social5 from './images/11-social-5.png';
+import social6 from './images/12-social-6.png';
+
+<Stack>
+  <SemiFull image={mkt1} alt="Pesoreal marketing visual" />
+  <SemiFull image={mkt2} alt="Pesoreal marketing visual" />
+</Stack>
+
+<Section title="Pesoreal fold up mailed catalog. Sent to furniture dealers and previous customers.">
+  <SemiFull image={posterFull} alt="Pesoreal fold-up mailed catalog" />
+  <SemiFull image={mkt3} alt="Pesoreal catalog marketing visual" />
+  <TwoCol>
+    <Image slot="left" src={posterClip1} alt="Pesoreal catalog detail" widths={[600, 900]} sizes="50vw" />
+    <Image slot="right" src={posterClip2} alt="Pesoreal catalog detail" widths={[600, 900]} sizes="50vw" />
+  </TwoCol>
+</Section>
+
+<Section title="Pesoreal social ads">
+  <ThreeCol>
+    <Image slot="a" src={social1} alt="Pesoreal social graphic" widths={[400, 600]} sizes="33vw" />
+    <Image slot="b" src={social2} alt="Pesoreal social graphic" widths={[400, 600]} sizes="33vw" />
+    <Image slot="c" src={social3} alt="Pesoreal social graphic" widths={[400, 600]} sizes="33vw" />
+  </ThreeCol>
+  <ThreeCol>
+    <Image slot="a" src={social4} alt="Pesoreal social graphic" widths={[400, 600]} sizes="33vw" />
+    <Image slot="b" src={social5} alt="Pesoreal social graphic" widths={[400, 600]} sizes="33vw" />
+    <Image slot="c" src={social6} alt="Pesoreal social graphic" widths={[400, 600]} sizes="33vw" />
+  </ThreeCol>
+</Section>

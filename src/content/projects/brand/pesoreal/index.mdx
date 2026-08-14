@@ -1,0 +1,56 @@
+---
+title: Pesoreal
+category: brand
+year: 2023
+client: Pesoreal Import Export Limited
+role: Brand Design & Art Direction
+tags:
+  - Brand
+  - Furniture
+  - Art Direction
+cover: ./images/cover.png
+coverBg: white
+summary: |-
+  Pesoreal, a furniture dealer specializing in mid-century modern pieces, imported primarily from South America.
+
+  Lockups, marks, and merch, designed in collaboration with Michael Collett at SR*.
+featured: false
+order: 1
+---
+
+import { Image } from 'astro:assets';
+import brand0 from './images/01-lockup.png';
+import brand1 from './images/02-lockup.png';
+import brand2 from './images/03-wordmark.png';
+import brand4 from './images/cover.png';
+import brand5 from './images/04-merch-front.png';
+import draft1 from './images/05-draft.png';
+import draft2 from './images/08-draft-2.png';
+import draft3 from './images/06-draft.png';
+import draft4 from './images/07-draft.png';
+
+<SemiFull image={brand0} alt="Pesoreal lockup with sun and maker marks" />
+
+<Stack>
+  <TwoCol>
+    <Image slot="left" src={brand1} alt="Pesoreal lockup in a rounded frame" widths={[600, 900]} sizes="50vw" />
+    <Image slot="right" src={brand2} alt="Pesoreal wordmark and marks" widths={[600, 900]} sizes="50vw" />
+  </TwoCol>
+
+  <TwoCol>
+    <Image slot="left" src={brand4} alt="Pesoreal merch with lounge chair graphic" widths={[600, 900]} sizes="50vw" />
+    <Image slot="right" src={brand5} alt="Pesoreal merch with chest marks and hem label" widths={[600, 900]} sizes="50vw" />
+  </TwoCol>
+</Stack>
+
+<Section title="Pesoreal emblem and color explorations">
+  <TwoCol>
+    <Image slot="left" src={draft1} alt="Pesoreal lockup explorations" widths={[600, 900]} sizes="50vw" />
+    <Image slot="right" src={draft2} alt="Pesoreal emblem and color study" widths={[600, 900]} sizes="50vw" />
+  </TwoCol>
+
+  <Stack>
+    <SemiFull image={draft3} alt="Pesoreal draft lockup on brown" />
+    <SemiFull image={draft4} alt="Pesoreal draft lockup on olive" />
+  </Stack>
+</Section>

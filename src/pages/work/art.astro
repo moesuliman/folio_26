@@ -25,6 +25,7 @@ const projects = (await getCollection('projects'))
 					href={`/work/${project.id}`}
 					title={project.data.title}
 					cover={project.data.cover}
+					coverBg={project.data.coverBg}
 					category={project.data.category}
 					tags={project.data.tags}
 				/>

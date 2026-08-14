@@ -7,17 +7,18 @@ interface Props {
 	href: string;
 	title: string;
 	cover: ImageMetadata;
+	coverBg?: 'black' | 'white';
 	category: string;
 	tags: string[];
 }
 
-const { href, title, cover, category, tags } = Astro.props;
+const { href, title, cover, coverBg = 'black', category, tags } = Astro.props;
 const visibleTags = displayTags(tags, 3);
 ---
 
 <li class="project-card work-item" data-category={category}>
 	<a href={href}>
-		<div class="project-card__media">
+		<div class:list={['project-card__media', `project-card__media--${coverBg}`]}>
 			<Image src={cover} alt="" widths={[480, 800]} sizes="(max-width: 720px) 100vw, 33vw" loading="lazy" />
 		</div>
 		<h2 class="project-card__title">{title}</h2>

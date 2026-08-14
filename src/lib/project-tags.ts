@@ -10,7 +10,7 @@ export const PRIMARY_TAGS = [
 	'Photography',
 ] as const;
 
-export const SECONDARY_TAGS = ['Music', 'Fashion'] as const;
+export const SECONDARY_TAGS = ['Music', 'Fashion', 'Furniture', 'Art Direction'] as const;
 
 export const PROJECT_TAGS = [...PRIMARY_TAGS, ...SECONDARY_TAGS] as const;
 

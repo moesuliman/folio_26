@@ -14,7 +14,6 @@ order: 19
 ---
 
 import { Image } from 'astro:assets';
-import cover from './images/cover.png';
 import motion01 from './images/01-motion.gif';
 import poster01 from './images/02-poster.png';
 import motion02 from './images/03-motion.gif';
@@ -23,18 +22,20 @@ import poster02 from './images/05-poster.png';
 import slicedEarth from './images/06-sliced-earth.gif';
 import motion03 from './images/07-motion.gif';
 
-<TwoCol>
-  <Image slot="left" src={motion02} alt="Staycore motion sequence" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={triColor} alt="Staycore tri-color motion" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+<Stack>
+  <SemiFull image={poster02} alt="Staycore festival poster" />
 
-<FullBleed image={poster02} alt="Staycore festival poster" />
+  <TwoCol>
+    <Image slot="left" src={slicedEarth} alt="Staycore sliced earth motion" widths={[600, 900]} sizes="50vw" />
+    <Image slot="right" src={motion03} alt="Staycore motion visual" widths={[600, 900]} sizes="50vw" />
+  </TwoCol>
 
-<TwoCol>
-  <Image slot="left" src={slicedEarth} alt="Staycore sliced earth motion" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={motion03} alt="Staycore motion visual" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+  <SemiFull image={motion01} alt="Staycore motion visual" />
 
-<FullBleed image={motion01} alt="Staycore motion visual" />
+  <SemiFull image={poster01} alt="Staycore poster design" />
 
-<FullBleed image={poster01} alt="Staycore poster design" />
+  <TwoCol>
+    <Image slot="left" src={motion02} alt="Staycore motion sequence" widths={[600, 900]} sizes="50vw" />
+    <Image slot="right" src={triColor} alt="Staycore tri-color motion" widths={[600, 900]} sizes="50vw" />
+  </TwoCol>
+</Stack>

@@ -4,27 +4,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { getLatestListenLabel } from '../lib/listenbrainz';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 
-// TODO(musicbrainz): Replace this hardcoded album with the latest listen from
-// Moe's MusicBrainz / ListenBrainz profile. Fetch the most recent album (or
-// release) and render it below location as `♪ {album}`. Until then, keep
-// this string in sync manually.
-const latestListen = 'Chanel Beads';
+// Latest listen from ListenBrainz at build time (see LISTENBRAINZ_USERNAME).
+const latestListen = await getLatestListenLabel();
 ---
 
 <BaseLayout flush description="Selected product, brand, and art work by Moe Suliman.">
 	<Nav slot="nav" />
 
 	<section class="hero hero--intro site-measure">
-		<h1>M. Suliman</h1>
+		<a class="hero__logo" href="/" aria-label="Moe Suliman home">
+			<img src="/logo_w.png" alt="" width="160" height="107" />
+		</a>
+		<h1>Mohamed Suliman</h1>
 		<p class="hero__bio">
 			Multidisciplinary designer with 12+ years of experience. I work with early stage startups on
 			0 to 1 product and brand design.
 			<br /><br />
 			Currently: Founding Designer at <a href="https://kydlabs.com">KYD Labs</a>, building the
 			brand and software venues use to run &amp; market live events.
+			<br /><br />
+			Previously: 12+ years of product and visual work for startups, brands and studios.
 		</p>
 		<div class="hero__meta">
 			<div class="hero__meta-col">
@@ -71,6 +74,7 @@ const latestListen = 'Chanel Beads';
 						href={`/work/${project.id}`}
 						title={project.data.title}
 						cover={project.data.cover}
+						coverBg={project.data.coverBg}
 						category={project.data.category}
 						tags={project.data.tags}
 					/>

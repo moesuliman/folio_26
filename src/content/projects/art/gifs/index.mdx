@@ -8,7 +8,10 @@ tags:
   - Illustration
   - 3D
 cover: ./images/cover.gif
-summary: A collection of GIFs made and uploaded to Giphy — viewed more than 10,000,000 times.
+summary: |-
+  A collection of gifs I've made and uploaded to Giphy with the hope that they'll get recirculated back to me one day. The "Eid Mubarak" one has turned into an auntie Whatsapp classic and gets sent regularly around Eid times. So, success :) ?
+
+  In total these have been viewed more than 30,000,000 times. Yea, I have no idea how either. 
 featured: false
 order: 12
 ---
@@ -21,27 +24,19 @@ import eid from './images/04-eid-2-full.gif';
 import flower from './images/05-flower-1.gif';
 import smackCity from './images/06-smack-city-2-3.gif';
 import smiley from './images/07-smiley.gif';
-import shiftyEye from './images/08-shifty-eye.gif';
 
-<TextBlock>
-  A collection of gifs I've made and uploaded to Giphy. In total these have been viewed more than 10,000,000 times. Yea ... I have no idea how either.
-</TextBlock>
-
-<FullBleed image={incense} alt="Incense GIF" />
+<SemiFull image={incense} alt="Incense GIF" />
 
 <TwoCol>
   <Image slot="left" src={explodingSmile} alt="Exploding smile GIF" widths={[600, 900]} sizes="50vw" />
   <Image slot="right" src={ello} alt="Ello optimized GIF" widths={[600, 900]} sizes="50vw" />
 </TwoCol>
 
-<FullBleed image={eid} alt="Eid GIF" />
+<SemiFull image={eid} alt="Eid GIF" />
 
 <TwoCol>
-  <Image slot="left" src={flower} alt="Flower GIF" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={smackCity} alt="Smack City GIF" widths={[600, 900]} sizes="50vw" />
+  <Image slot="left" src={smackCity} alt="Smack City GIF" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={smiley} alt="Smiley GIF" widths={[600, 900]} sizes="50vw" />
 </TwoCol>
 
-<TwoCol>
-  <Image slot="left" src={smiley} alt="Smiley GIF" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={shiftyEye} alt="Shifty eye GIF" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
+<SemiFull half image={flower} alt="Flower GIF" />

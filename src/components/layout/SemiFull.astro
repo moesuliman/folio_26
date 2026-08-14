@@ -1,0 +1,27 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+	image: ImageMetadata;
+	alt?: string;
+	/** Centered at two-col column width */
+	half?: boolean;
+}
+
+const { image, alt = '', half = false } = Astro.props;
+---
+
+<figure class:list={['semi-full', { 'semi-full--half': half }]}>
+	<Image
+		src={image}
+		alt={alt}
+		widths={half ? [480, 720, 960] : [720, 1080, 1440]}
+		sizes={
+			half
+				? '(max-width: 72rem) calc((100vw - 4rem - 1.5rem) / 2), calc((72rem - 1.5rem) / 2)'
+				: '(max-width: 72rem) calc(100vw - 4rem), 72rem'
+		}
+		loading="lazy"
+	/>
+</figure>

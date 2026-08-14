@@ -22,6 +22,7 @@ const projects = defineCollection({
 			role: z.string().optional(),
 			tags: z.array(projectTag).min(1),
 			cover: image(),
+			coverBg: z.enum(['black', 'white']).default('black'),
 			summary: z.string(),
 			featured: z.boolean().default(false),
 			order: z.number().default(0),

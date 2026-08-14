@@ -16,6 +16,16 @@ pnpm build
 pnpm preview
 ```
 
+### ListenBrainz (homepage ♪ line)
+
+The homepage hero fetches your most recent listen at **build time** from the public ListenBrainz API. Set your username in `.env`:
+
+```bash
+LISTENBRAINZ_USERNAME=your_listenbrainz_username
+```
+
+No API token is required for reading public listens. The line updates when you rebuild or redeploy. If the username is unset or the request fails, it falls back to a static label.
+
 ## Add a project
 
 1. Create a folder: `src/content/projects/[category]/[slug]/`

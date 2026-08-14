@@ -30,6 +30,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 					href={`/work/${project.id}`}
 					title={project.data.title}
 					cover={project.data.cover}
+					coverBg={project.data.coverBg}
 					category={project.data.category}
 					tags={project.data.tags}
 				/>

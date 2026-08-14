@@ -80,6 +80,10 @@ strong {
 	line-height: 1.55;
 }
 
+.hero__lede + .hero__lede {
+	margin-top: var(--space-3);
+}
+
 .text-block {
 	max-width: var(--prose-width);
 	color: var(--color-fg);
@@ -95,7 +99,7 @@ strong {
 
 .project-card__title {
 	font-size: 1.125rem;
-	font-weight: 600;
+	font-weight: 500;
 	line-height: 1.2;
 	letter-spacing: normal;
 	color: var(--color-headings);
@@ -118,4 +122,5 @@ strong {
 	/* border-top: 1.25px solid rgba(255, 255, 255, 0.25); */
 	text-align: center;
 	justify-content: center;
+	color: var(--palette-600);
 }

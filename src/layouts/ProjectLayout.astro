@@ -8,7 +8,11 @@ import ImageGrid from '../components/layout/ImageGrid.astro';
 import VideoBlock from '../components/layout/VideoBlock.astro';
 import TextBlock from '../components/layout/TextBlock.astro';
 import TwoCol from '../components/layout/TwoCol.astro';
+import ThreeCol from '../components/layout/ThreeCol.astro';
 import FullBleed from '../components/layout/FullBleed.astro';
+import SemiFull from '../components/layout/SemiFull.astro';
+import Stack from '../components/layout/Stack.astro';
+import Section from '../components/layout/Section.astro';
 import { getProjectImages } from '../lib/project-images';
 import { displayTags } from '../lib/project-tags';
 
@@ -25,11 +29,22 @@ const galleryImages = getProjectImages(project.data.category, project.id).filter
 const tags = displayTags(project.data.tags);
 ---
 
-<BaseLayout title={project.data.title} description={project.data.summary} flush>
+<BaseLayout
+	title={project.data.title}
+	description={project.data.summary}
+	flush
+	bodyClass="page-project"
+>
 	<Nav slot="nav" />
 
 	<article>
 		<header class="project-header">
+			<div class="project-header__bar">
+				<a class="project-back" href="/">← Projects</a>
+				<a class="project-logo" href="/" aria-label="Moe Suliman home">
+					<img src="/logo_w.png" alt="" width="160" height="107" />
+				</a>
+			</div>
 			<p class="project-header__meta">
 				{tags.map((tag) => <span>{tag}</span>)}
 				<span>{project.data.year}</span>
@@ -37,7 +52,11 @@ const tags = displayTags(project.data.tags);
 				{project.data.role && <span>{project.data.role}</span>}
 			</p>
 			<h1>{project.data.title}</h1>
-			<p class="hero__lede">{project.data.summary}</p>
+			{
+				project.data.summary
+					.split(/\n\n+/)
+					.map((paragraph) => <p class="hero__lede">{paragraph}</p>)
+			}
 		</header>
 
 		<div class="project-body">
@@ -49,7 +68,11 @@ const tags = displayTags(project.data.tags);
 							VideoBlock,
 							TextBlock,
 							TwoCol,
+							ThreeCol,
 							FullBleed,
+							SemiFull,
+							Stack,
+							Section,
 						}}
 					/>
 				) : (

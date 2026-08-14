@@ -1,0 +1,49 @@
+---
+title: 57th St
+category: brand
+year: 2025
+client: 57 Gourmet Deli
+role: Brand Design
+tags:
+  - Brand
+cover: ./images/cover.png
+summary: Brand identity for 57Deli — a 24-hour gourmet deli on East 57th Street in New York. Lockups, storefront graphics, merch, and menu screens.
+featured: false
+order: 4
+---
+
+import { Image } from 'astro:assets';
+import cover from './images/cover.png';
+import lockup1b from './images/02-lockup-1b.png';
+import lockup2a from './images/03-lockup-2a.png';
+import lockup2b from './images/04-lockup-2b.png';
+import tote1 from './images/05-tote-1.png';
+import tote2 from './images/06-tote-2.png';
+import tote3 from './images/07-tote-3.png';
+import tvmenu1 from './images/08-tvmenu-1.png';
+import tvmenu2 from './images/09-tvmenu-2.png';
+
+<FullBleed image={cover} alt="57Deli storefront and window graphics" />
+
+<TextBlock>
+  Identity and environmental graphics for 57 Gourmet Deli at 141 E 57th St — lockups, window vinyl, tote merch, and in-store menu screens.
+</TextBlock>
+
+<Stack>
+  <SemiFull image={lockup1b} alt="57Deli lockup on white" />
+  <TwoCol>
+    <Image slot="left" src={lockup2a} alt="57Deli lockup variant" widths={[600, 900]} sizes="50vw" />
+    <Image slot="right" src={lockup2b} alt="57Deli lockup variant inverted" widths={[600, 900]} sizes="50vw" />
+  </TwoCol>
+</Stack>
+
+<FullBleed image={tote1} alt="57Deli tote bag mockup" />
+
+<TwoCol>
+  <Image slot="left" src={tote2} alt="57Deli tote bag design" widths={[600, 900]} sizes="50vw" />
+  <Image slot="right" src={tote3} alt="57Deli tote bag design alternate" widths={[600, 900]} sizes="50vw" />
+</TwoCol>
+
+<FullBleed image={tvmenu1} alt="57Deli smoothies and juices menu screen" />
+
+<FullBleed image={tvmenu2} alt="57Deli drinks menu screen" />
