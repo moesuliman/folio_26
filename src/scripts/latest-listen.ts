@@ -71,10 +71,33 @@ function isArtListenGlyph(glyph: HTMLElement | null, artUrl: string) {
 	return img instanceof HTMLImageElement && artUrlMatches(img, artUrl);
 }
 
-function createArtGlyph(url: string) {
+function bindGlyphArtLoad(glyph: HTMLElement, img: HTMLImageElement) {
+	const markLoaded = () => glyph.classList.add('hero__listen-glyph--loaded');
+
+	const markFailed = () => {
+		glyph.classList.remove('hero__listen-glyph--art', 'hero__listen-glyph--loaded');
+		img.remove();
+	};
+
+	if (img.complete && img.naturalWidth > 0) {
+		markLoaded();
+		return;
+	}
+
+	img.addEventListener('load', markLoaded, { once: true });
+	img.addEventListener('error', markFailed, { once: true });
+}
+
+function createArtGlyph(url: string, startLoaded = false) {
 	const span = document.createElement('span');
-	span.className = 'hero__glyph hero__listen-glyph';
+	span.className = 'hero__glyph hero__listen-glyph hero__listen-glyph--art';
 	span.setAttribute('aria-hidden', 'true');
+
+	const fallback = document.createElement('span');
+	fallback.className = 'hero__listen-glyph-fallback';
+	fallback.setAttribute('aria-hidden', 'true');
+	fallback.textContent = '♪';
+	span.appendChild(fallback);
 
 	const img = document.createElement('img');
 	img.className = 'hero__listen-art';
@@ -86,6 +109,10 @@ function createArtGlyph(url: string) {
 	img.decoding = 'async';
 	img.fetchPriority = 'low';
 	span.appendChild(img);
+
+	if (startLoaded) span.classList.add('hero__listen-glyph--loaded');
+	else bindGlyphArtLoad(span, img);
+
 	return span;
 }
 
@@ -117,7 +144,13 @@ async function updateListenGlyph(container: ParentNode, artUrl: string | null) {
 
 	const current = container.querySelector<HTMLElement>('.hero__listen-glyph');
 	if (isArtListenGlyph(current, artUrl)) return;
-	current?.replaceWith(createArtGlyph(artUrl));
+	current?.replaceWith(createArtGlyph(artUrl, true));
+}
+
+function initListenGlyphArt(container: ParentNode) {
+	const glyph = container.querySelector<HTMLElement>('.hero__listen-glyph--art');
+	const img = getListenGlyphArt(glyph);
+	if (glyph && img) bindGlyphArtLoad(glyph, img);
 }
 
 function setTextContent(el: Element | null, value: string | null) {
@@ -332,6 +365,7 @@ function initLatestListenRefresh() {
 	let hasFetched = false;
 
 	initListenPopover(wrap);
+	initListenGlyphArt(wrap);
 
 	const refresh = async (force = false) => {
 		if (!force && hasFetched) {

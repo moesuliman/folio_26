@@ -70,7 +70,11 @@ const latestListen = await getLatestListen();
 					>
 						{
 							latestListen.artUrl ? (
-								<span class="hero__glyph hero__listen-glyph" aria-hidden="true">
+								<span
+									class="hero__glyph hero__listen-glyph hero__listen-glyph--art"
+									aria-hidden="true"
+								>
+									<span class="hero__listen-glyph-fallback">♪</span>
 									<img
 										class="hero__listen-art"
 										src={latestListen.artUrl}

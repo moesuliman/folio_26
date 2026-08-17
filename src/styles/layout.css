@@ -125,6 +125,37 @@
 	vertical-align: middle;
 }
 
+.hero--intro .hero__listen-glyph {
+	position: relative;
+}
+
+.hero__listen-glyph-fallback {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.hero__listen-glyph--art .hero__listen-art {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	transition: opacity 150ms ease-out;
+}
+
+.hero__listen-glyph--art.hero__listen-glyph--loaded {
+	background: transparent;
+}
+
+.hero__listen-glyph--art.hero__listen-glyph--loaded .hero__listen-art {
+	opacity: 1;
+}
+
+.hero__listen-glyph--art.hero__listen-glyph--loaded .hero__listen-glyph-fallback {
+	opacity: 0;
+}
+
 .hero--intro .hero__listen-art {
 	display: block;
 	width: 100%;
