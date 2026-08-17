@@ -14,21 +14,26 @@ const projects = defineCollection({
 		},
 	}),
 	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			category: z.enum(['product', 'brand', 'art']),
-			year: z.number(),
-			client: z.string().optional(),
-			role: z.string().optional(),
-			tags: z.array(projectTag).min(1),
-			cover: image(),
-			coverBg: z.enum(['black', 'white']).default('black'),
-			summary: z.string(),
-			featured: z.boolean().default(false),
-			hidden: z.boolean().default(false),
-			order: z.number().default(0),
-			videoUrl: z.string().url().optional(),
-		}),
+		z
+			.object({
+				title: z.string(),
+				category: z.enum(['product', 'brand', 'art']),
+				year: z.number(),
+				client: z.string().optional(),
+				role: z.string().optional(),
+				tags: z.array(projectTag).min(1),
+				cover: image().optional(),
+				coverVideo: z.string().optional(),
+				coverBg: z.enum(['black', 'white']).default('black'),
+				summary: z.string(),
+				featured: z.boolean().default(false),
+				hidden: z.boolean().default(false),
+				order: z.number().default(0),
+				videoUrl: z.string().url().optional(),
+			})
+			.refine((data) => Boolean(data.cover || data.coverVideo), {
+				message: 'Project must define either cover or coverVideo',
+			}),
 });
 
 const blog = defineCollection({

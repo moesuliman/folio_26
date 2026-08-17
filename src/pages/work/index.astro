@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjectCover } from '../../lib/project-cover';
 
 const projects = (await getCollection('projects'))
 	.filter((project) => !project.data.hidden)
@@ -27,16 +28,21 @@ const projects = (await getCollection('projects'))
 
 	<ul class="project-grid" id="work-grid">
 		{
-			projects.map((project) => (
-				<ProjectCard
-					href={`/work/${project.id}`}
-					title={project.data.title}
-					cover={project.data.cover}
-					coverBg={project.data.coverBg}
-					category={project.data.category}
-					tags={project.data.tags}
-				/>
-			))
+			projects.map((project) => {
+				const { cover, coverVideo } = getProjectCover(project);
+
+				return (
+					<ProjectCard
+						href={`/work/${project.id}`}
+						title={project.data.title}
+						cover={cover}
+						coverVideo={coverVideo}
+						coverBg={project.data.coverBg}
+						category={project.data.category}
+						tags={project.data.tags}
+					/>
+				);
+			})
 		}
 	</ul>
 

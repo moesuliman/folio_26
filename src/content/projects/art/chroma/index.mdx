@@ -13,17 +13,16 @@ order: 22
 ---
 
 import { Image } from 'astro:assets';
-import cover from './images/cover.png';
 import ripped01 from './images/01-rippedcloth.png';
 import ripped02 from './images/02-rippedcloth.png';
 import softBody from './images/03-soft-body.png';
-import chromaGif from './images/04-chroma.gif';
+import chromaMotion from './images/04-chroma.mp4?url';
 
-<FullBleed image={ripped01} alt="Chroma ripped cloth render" />
+<SemiFull image={ripped01} alt="Chroma ripped cloth render" />
 
 <TwoCol>
-  <Image slot="left" src={ripped02} alt="Chroma soft body cloth study" widths={[600, 900]} sizes="50vw" />
+  <LoopVideo slot="left" src={chromaMotion} alt="Chroma motion study" />
   <Image slot="right" src={softBody} alt="Chroma soft body form" widths={[600, 900]} sizes="50vw" />
 </TwoCol>
 
-<FullBleed image={chromaGif} alt="Chroma motion study" />
+<SemiFull image={ripped02} alt="Chroma soft body cloth study" />

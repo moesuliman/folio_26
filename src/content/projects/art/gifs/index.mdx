@@ -7,7 +7,7 @@ tags:
   - Art
   - Illustration
   - 3D
-cover: ./images/cover.gif
+coverVideo: ./images/cover.mp4
 coverBg: white
 summary: |-
   A collection of gifs I've made and uploaded to Giphy with the hope that they'll get recirculated back to me one day. The "Eid Mubarak" one has turned into an auntie Whatsapp classic and gets sent regularly around Eid times. So, success :) ?
@@ -17,27 +17,26 @@ featured: false
 order: 5
 ---
 
-import { Image } from 'astro:assets';
-import incense from './images/01-incense-longer.gif';
-import explodingSmile from './images/02-exploding-smile.gif';
-import ello from './images/03-ello-optimized-efd03f3e.gif';
-import eid from './images/04-eid-2-full.gif';
-import flower from './images/05-flower-1.gif';
-import smackCity from './images/06-smack-city-2-3.gif';
-import smiley from './images/07-smiley.gif';
+import incense from './images/01-incense-longer.mp4?url';
+import explodingSmile from './images/02-exploding-smile.mp4?url';
+import ello from './images/03-ello-optimized-efd03f3e.mp4?url';
+import eid from './images/04-eid-2-full.mp4?url';
+import flower from './images/05-flower-1.mp4?url';
+import smackCity from './images/06-smack-city-2-3.mp4?url';
+import smiley from './images/07-smiley.mp4?url';
 
-<SemiFull image={incense} alt="Incense GIF" />
-
-<TwoCol>
-  <Image slot="left" src={explodingSmile} alt="Exploding smile GIF" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={ello} alt="Ello optimized GIF" widths={[600, 900]} sizes="50vw" />
-</TwoCol>
-
-<SemiFull image={eid} alt="Eid GIF" />
+<SemiFullVideo src={incense} alt="Incense GIF" />
 
 <TwoCol>
-  <Image slot="left" src={smackCity} alt="Smack City GIF" widths={[600, 900]} sizes="50vw" />
-  <Image slot="right" src={smiley} alt="Smiley GIF" widths={[600, 900]} sizes="50vw" />
+  <LoopVideo slot="left" src={explodingSmile} alt="Exploding smile GIF" />
+  <LoopVideo slot="right" src={ello} alt="Ello optimized GIF" />
 </TwoCol>
 
-<SemiFull half image={flower} alt="Flower GIF" />
+<SemiFullVideo src={eid} alt="Eid GIF" />
+
+<TwoCol>
+  <LoopVideo slot="left" src={smackCity} alt="Smack City GIF" />
+  <LoopVideo slot="right" src={smiley} alt="Smiley GIF" />
+</TwoCol>
+
+<SemiFullVideo half src={flower} alt="Flower GIF" />

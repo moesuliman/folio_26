@@ -1,26 +1,42 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import LoopVideo from './layout/LoopVideo.astro';
 import { withBase } from '../lib/base-url';
 import { displayTags } from '../lib/project-tags';
 
 interface Props {
 	href: string;
 	title: string;
-	cover: ImageMetadata;
+	cover?: ImageMetadata;
+	coverVideo?: string;
 	coverBg?: 'black' | 'white';
 	category: string;
 	tags: string[];
 }
 
-const { href, title, cover, coverBg = 'black', category, tags } = Astro.props;
+const { href, title, cover, coverVideo, coverBg = 'black', category, tags } = Astro.props;
 const visibleTags = displayTags(tags, 3);
 ---
 
 <li class="project-card work-item" data-category={category}>
 	<a href={withBase(href)}>
 		<div class:list={['project-card__media', `project-card__media--${coverBg}`]}>
-			<Image src={cover} alt="" widths={[480, 800]} sizes="(max-width: 720px) 100vw, 33vw" loading="lazy" />
+			{
+				coverVideo ? (
+					<LoopVideo src={coverVideo} alt={title} />
+				) : (
+					cover && (
+						<Image
+							src={cover}
+							alt=""
+							widths={[480, 800]}
+							sizes="(max-width: 720px) 100vw, 33vw"
+							loading="lazy"
+						/>
+					)
+				)
+			}
 		</div>
 		<h2 class="project-card__title">{title}</h2>
 		<p class="project-card__meta">
