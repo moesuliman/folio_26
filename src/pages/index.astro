@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { getLatestListenLabel } from '../lib/listenbrainz';
+import { getLatestListen, getListenKicker } from '../lib/listenbrainz';
 import { withBase } from '../lib/base-url';
 
 const projects = (await getCollection('projects'))
@@ -12,10 +12,14 @@ const projects = (await getCollection('projects'))
 	.sort((a, b) => a.data.order - b.data.order);
 
 // Latest listen from ListenBrainz at build time (see LISTENBRAINZ_USERNAME).
-const latestListen = await getLatestListenLabel();
+const latestListen = await getLatestListen();
 ---
 
-<BaseLayout flush description="Selected product, brand, and art work by Moe Suliman.">
+<BaseLayout
+	flush
+	description="Selected product, brand, and art work by Moe Suliman."
+	preconnect={['https://api.listenbrainz.org', 'https://musicbrainz.org', 'https://coverartarchive.org', 'https://archive.org']}
+>
 	<Nav slot="nav" />
 
 	<section class="hero hero--intro site-measure">
@@ -49,7 +53,84 @@ const latestListen = await getLatestListenLabel();
 			</div>
 			<div class="hero__meta-col">
 				<p><span class="hero__glyph" aria-hidden="true">⌂</span> Brooklyn, NY</p>
-				<p><span class="hero__glyph" aria-hidden="true">♪</span> {latestListen}</p>
+				<div
+					class="hero__listen-wrap"
+					data-listenbrainz-user={import.meta.env.LISTENBRAINZ_USERNAME}
+					data-fallback-label="Chanel Beads"
+					data-initial-art-url={latestListen.artUrl ?? undefined}
+					data-initial-status={latestListen.status}
+				>
+					<button
+						type="button"
+						class="hero__listen-trigger"
+						aria-expanded="false"
+						aria-controls="hero-listen-popover"
+						aria-haspopup="dialog"
+					>
+						<span class="hero__glyph hero__listen-glyph" aria-hidden="true">
+							♪
+						</span>
+						<span class="hero__listen-label">{latestListen.label}</span>
+					</button>
+					<div
+						id="hero-listen-popover"
+						class="hero__listen-popover"
+						role="dialog"
+						aria-label="Now playing"
+						hidden
+					>
+						<a
+							class="hero__listen-card"
+							href={latestListen.href ?? 'https://listenbrainz.org'}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{
+								latestListen.artUrl ? (
+									<div class="hero__listen-card-art-wrap hero__listen-popover-item">
+										<img
+											class="hero__listen-card-art"
+											src={latestListen.artUrl}
+											data-art-src={latestListen.artUrl}
+											alt=""
+											loading="lazy"
+											decoding="async"
+										/>
+									</div>
+								) : (
+									<div
+										class="hero__listen-card-art-wrap hero__listen-card-art-wrap--fallback hero__listen-popover-item"
+										aria-hidden="true"
+									>
+										<span class="hero__listen-card-art hero__listen-card-art--fallback">
+											♪
+										</span>
+									</div>
+								)
+							}
+							<span class="hero__listen-card-body">
+								<span class="hero__listen-card-kicker hero__listen-popover-item">
+									{getListenKicker(latestListen.status)}
+								</span>
+								<span class="hero__listen-card-track hero__listen-popover-item">
+									{latestListen.track ?? latestListen.label}
+								</span>
+								<span
+									class="hero__listen-card-artist hero__listen-popover-item"
+									hidden={!latestListen.artist}
+								>
+									{latestListen.artist}
+								</span>
+								<span
+									class="hero__listen-card-album hero__listen-popover-item"
+									hidden={!latestListen.album}
+								>
+									{latestListen.album}
+								</span>
+							</span>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -84,6 +165,8 @@ const latestListen = await getLatestListenLabel();
 </BaseLayout>
 
 <script>
+	import '../scripts/latest-listen';
+
 	const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
 	const items = document.querySelectorAll<HTMLElement>('.work-item');
 
