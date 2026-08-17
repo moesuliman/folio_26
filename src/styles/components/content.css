@@ -202,14 +202,20 @@
 	margin-inline: auto;
 }
 
-.semi-full img {
+.semi-full :is(img, video) {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.loop-video {
 	width: 100%;
 	height: auto;
 	display: block;
 }
 
 /* Soft inset edge — tuned via --shadow-image (outline, not box-shadow) */
-.project-body :is(.full-bleed, .semi-full, .two-col, .three-col, .stack, .image-grid) img {
+.project-body :is(.full-bleed, .semi-full, .two-col, .three-col, .stack, .image-grid) :is(img, video) {
 	outline: 1px solid var(--shadow-image);
 	outline-offset: -1px;
 	border-radius: 12px;

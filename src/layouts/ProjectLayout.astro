@@ -5,6 +5,8 @@ import BaseLayout from './BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ImageGrid from '../components/layout/ImageGrid.astro';
+import LoopVideo from '../components/layout/LoopVideo.astro';
+import SemiFullVideo from '../components/layout/SemiFullVideo.astro';
 import VideoBlock from '../components/layout/VideoBlock.astro';
 import TextBlock from '../components/layout/TextBlock.astro';
 import TwoCol from '../components/layout/TwoCol.astro';
@@ -66,6 +68,8 @@ const tags = displayTags(project.data.tags);
 					<Content
 						components={{
 							ImageGrid,
+							LoopVideo,
+							SemiFullVideo,
 							VideoBlock,
 							TextBlock,
 							TwoCol,

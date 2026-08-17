@@ -1,0 +1,19 @@
+---
+interface Props {
+	src: string;
+	alt?: string;
+}
+
+const { src, alt = '' } = Astro.props;
+---
+
+<video
+	class="loop-video"
+	src={src}
+	autoplay
+	loop
+	muted
+	playsinline
+	preload="metadata"
+	aria-label={alt}
+></video>

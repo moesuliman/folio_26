@@ -1,0 +1,16 @@
+---
+import LoopVideo from './LoopVideo.astro';
+
+interface Props {
+	src: string;
+	alt?: string;
+	/** Centered at two-col column width */
+	half?: boolean;
+}
+
+const { src, alt = '', half = false } = Astro.props;
+---
+
+<figure class:list={['semi-full', { 'semi-full--half': half }]}>
+	<LoopVideo src={src} alt={alt} />
+</figure>
