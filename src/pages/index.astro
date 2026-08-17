@@ -94,7 +94,7 @@ const latestListen = await getLatestListen();
 						id="hero-listen-popover"
 						class="hero__listen-popover"
 						role="dialog"
-						aria-label="Now playing"
+						aria-label={getListenKicker(latestListen.status)}
 						hidden
 					>
 						<a
@@ -127,8 +127,20 @@ const latestListen = await getLatestListen();
 								)
 							}
 							<span class="hero__listen-card-body">
-								<span class="hero__listen-card-kicker hero__listen-popover-item">
-									{getListenKicker(latestListen.status)}
+								<span
+									class="hero__listen-card-kicker hero__listen-popover-item"
+									data-status={latestListen.status}
+								>
+									<span class="hero__listen-kicker-content">
+										{
+											latestListen.status === 'playing' && (
+												<span class="hero__listen-kicker-glyph" aria-hidden="true">
+													♪
+												</span>
+											)
+										}
+										{getListenKicker(latestListen.status)}
+									</span>
 								</span>
 								<span class="hero__listen-card-track hero__listen-popover-item">
 									{latestListen.track ?? latestListen.label}

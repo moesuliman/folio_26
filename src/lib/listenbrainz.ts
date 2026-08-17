@@ -69,7 +69,7 @@ const FALLBACK_LISTEN: LatestListen = {
 const coverLookupCache = new Map<string, ResolvedCover | null>();
 
 export function getListenKicker(status: ListenStatus): string {
-	return status === 'playing' ? 'Now playing' : 'Last played';
+	return status === 'playing' ? 'Currently playing' : 'Recently played';
 }
 
 /** Smallest available cover art URL, preferring a direct archive.org thumbnail. */

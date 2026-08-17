@@ -167,13 +167,37 @@ function updatePopoverArt(card: HTMLElement, artUrl: string | null) {
 	existing.replaceWith(wrap);
 }
 
+function updateListenKicker(kicker: Element | null, status: ListenStatus) {
+	if (!kicker) return;
+
+	kicker.dataset.status = status;
+	kicker.replaceChildren();
+
+	const content = document.createElement('span');
+	content.className = 'hero__listen-kicker-content';
+
+	if (status === 'playing') {
+		const glyph = document.createElement('span');
+		glyph.className = 'hero__listen-kicker-glyph';
+		glyph.setAttribute('aria-hidden', 'true');
+		glyph.textContent = '♪';
+		content.appendChild(glyph);
+	}
+
+	content.appendChild(document.createTextNode(getListenKicker(status)));
+	kicker.appendChild(content);
+}
+
 function updatePopover(wrap: HTMLElement, listen: LatestListen) {
 	const card = wrap.querySelector<HTMLAnchorElement>('.hero__listen-card');
 	if (!card) return;
 
+	const popover = wrap.querySelector<HTMLElement>('.hero__listen-popover');
+	if (popover) popover.setAttribute('aria-label', getListenKicker(listen.status));
+
 	if (listen.href) card.href = listen.href;
 	updatePopoverArt(card, listen.artUrl);
-	setTextContent(card.querySelector('.hero__listen-card-kicker'), getListenKicker(listen.status));
+	updateListenKicker(card.querySelector('.hero__listen-card-kicker'), listen.status);
 	setTextContent(card.querySelector('.hero__listen-card-track'), listen.track ?? listen.label);
 	setTextContent(card.querySelector('.hero__listen-card-artist'), listen.artist);
 	setTextContent(card.querySelector('.hero__listen-card-album'), listen.album);
