@@ -67,9 +67,24 @@ const latestListen = await getLatestListen();
 						aria-controls="hero-listen-popover"
 						aria-haspopup="dialog"
 					>
-						<span class="hero__glyph hero__listen-glyph" aria-hidden="true">
-							♪
-						</span>
+						{
+							latestListen.artUrl ? (
+								<img
+									class="hero__glyph hero__listen-art hero__listen-glyph"
+									src={latestListen.artUrl}
+									data-art-src={latestListen.artUrl}
+									alt=""
+									width={16}
+									height={16}
+									decoding="async"
+									fetchpriority="low"
+								/>
+							) : (
+								<span class="hero__glyph hero__listen-glyph" aria-hidden="true">
+									♪
+								</span>
+							)
+						}
 						<span class="hero__listen-label">{latestListen.label}</span>
 					</button>
 					<div

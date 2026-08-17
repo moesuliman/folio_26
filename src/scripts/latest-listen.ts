@@ -328,7 +328,6 @@ function initLatestListenRefresh() {
 	};
 
 	scheduleIdle(() => {
-		if (initialArtUrl) void updateListenGlyph(wrap, initialArtUrl);
 		void refresh(true);
 	});
 
