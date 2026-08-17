@@ -95,13 +95,15 @@
 
 .filters--heading button {
 	width: 100%;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 500;
 	letter-spacing: -0.02em;
 	line-height: 1.2;
 	padding: 0.75rem 1rem;
 	white-space: nowrap;
 	border-radius: var(--radius-control);
+	outline: 1px solid oklch(0 0 0 / 0.02);
+	outline-offset: -1px;
 }
 
 .filters--heading button:not([aria-pressed='true']) {
@@ -111,9 +113,10 @@
 }
 
 .filters--heading button[aria-pressed='true'] {
-	border-color: var(--color-accent);
-	background: var(--color-accent);
-	color: var(--color-accent-fg);
+	border-color: #333;
+	background: #333;
+	color: #fff;
+	outline: 1px solid oklch(0 0 0 / 0.06);
 }
 
 .work-item[hidden] {
