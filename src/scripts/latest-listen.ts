@@ -58,9 +58,26 @@ function artUrlMatches(element: HTMLImageElement, artUrl: string) {
 	return element.src === artUrl || element.src.endsWith(artUrl);
 }
 
+function getListenGlyphArt(glyph: HTMLElement | null): HTMLImageElement | null {
+	return glyph?.querySelector('img.hero__listen-art') ?? null;
+}
+
+function isFallbackListenGlyph(glyph: HTMLElement | null) {
+	return Boolean(glyph && !getListenGlyphArt(glyph));
+}
+
+function isArtListenGlyph(glyph: HTMLElement | null, artUrl: string) {
+	const img = getListenGlyphArt(glyph);
+	return img instanceof HTMLImageElement && artUrlMatches(img, artUrl);
+}
+
 function createArtGlyph(url: string) {
+	const span = document.createElement('span');
+	span.className = 'hero__glyph hero__listen-glyph';
+	span.setAttribute('aria-hidden', 'true');
+
 	const img = document.createElement('img');
-	img.className = 'hero__glyph hero__listen-art hero__listen-glyph';
+	img.className = 'hero__listen-art';
 	img.src = url;
 	img.dataset.artSrc = url;
 	img.alt = '';
@@ -68,7 +85,8 @@ function createArtGlyph(url: string) {
 	img.height = 16;
 	img.decoding = 'async';
 	img.fetchPriority = 'low';
-	return img;
+	span.appendChild(img);
+	return span;
 }
 
 function createFallbackGlyph() {
@@ -83,22 +101,22 @@ async function updateListenGlyph(container: ParentNode, artUrl: string | null) {
 	const existing = container.querySelector<HTMLElement>('.hero__listen-glyph');
 
 	if (!artUrl) {
-		if (existing instanceof HTMLSpanElement) return;
+		if (isFallbackListenGlyph(existing)) return;
 		existing?.replaceWith(createFallbackGlyph());
 		return;
 	}
 
-	if (existing instanceof HTMLImageElement && artUrlMatches(existing, artUrl)) return;
+	if (isArtListenGlyph(existing, artUrl)) return;
 
 	const loaded = await preloadArt(artUrl);
 	if (!loaded) {
-		if (existing instanceof HTMLSpanElement) return;
+		if (isFallbackListenGlyph(existing)) return;
 		existing?.replaceWith(createFallbackGlyph());
 		return;
 	}
 
 	const current = container.querySelector<HTMLElement>('.hero__listen-glyph');
-	if (current instanceof HTMLImageElement && artUrlMatches(current, artUrl)) return;
+	if (isArtListenGlyph(current, artUrl)) return;
 	current?.replaceWith(createArtGlyph(artUrl));
 }
 
