@@ -56,7 +56,7 @@ export type LatestListen = {
 	status: ListenStatus;
 };
 
-const FALLBACK_LISTEN: LatestListen = {
+export const FALLBACK_LISTEN: LatestListen = {
 	label: FALLBACK_LABEL,
 	track: null,
 	artist: null,

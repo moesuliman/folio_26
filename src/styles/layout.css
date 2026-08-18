@@ -566,6 +566,7 @@
 }
 
 .work-board .project-grid {
+	position: relative;
 	gap: var(--work-board-gutter);
 	padding: 0;
 	grid-template-columns: repeat(
