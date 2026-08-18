@@ -1,6 +1,5 @@
 const EXIT_MS = 150;
 const ENTER_MS = 220;
-const MOVE_MS = 220;
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -20,12 +19,14 @@ function clearTransient(item: HTMLElement) {
 	item.style.left = '';
 	item.style.top = '';
 	item.style.width = '';
-	item.style.setProperty('--work-dx', '0px');
-	item.style.setProperty('--work-dy', '0px');
 }
 
 function matchesFilter(item: HTMLElement, filter: string) {
 	return filter === 'all' || item.dataset.category === filter;
+}
+
+function movedFrom(prev: DOMRect, next: DOMRect) {
+	return Math.abs(prev.top - next.top) > 1 || Math.abs(prev.left - next.left) > 1;
 }
 
 function syncIndicator(tabs: HTMLElement, active: HTMLButtonElement) {
@@ -78,25 +79,21 @@ function applyFilter(
 		item.classList.add('work-item--enter');
 	});
 
+	const appearing = [...entering];
 	staying.forEach((item) => {
 		const prev = first.get(item);
 		if (!prev) return;
-		const next = item.getBoundingClientRect();
-		item.style.setProperty('--work-dx', `${prev.left - next.left}px`);
-		item.style.setProperty('--work-dy', `${prev.top - next.top}px`);
+		if (!movedFrom(prev, item.getBoundingClientRect())) return;
+		item.classList.add('work-item--enter');
+		appearing.push(item);
 	});
 
 	grid.getBoundingClientRect();
 
 	leaving.forEach((item) => item.classList.add('work-item--animate', 'work-item--exit'));
-	entering.forEach((item) => {
+	appearing.forEach((item) => {
 		item.classList.add('work-item--animate');
 		item.classList.remove('work-item--enter');
-	});
-	staying.forEach((item) => {
-		item.classList.add('work-item--animate');
-		item.style.setProperty('--work-dx', '0px');
-		item.style.setProperty('--work-dy', '0px');
 	});
 
 	window.setTimeout(() => {
@@ -105,9 +102,8 @@ function applyFilter(
 			item.hidden = true;
 			clearTransient(item);
 		});
-		entering.forEach((item) => item.classList.remove('work-item--animate'));
-		staying.forEach((item) => item.classList.remove('work-item--animate'));
-	}, Math.max(EXIT_MS, ENTER_MS, MOVE_MS) + 20);
+		appearing.forEach((item) => item.classList.remove('work-item--animate'));
+	}, Math.max(EXIT_MS, ENTER_MS) + 20);
 }
 
 function initWorkBoard() {

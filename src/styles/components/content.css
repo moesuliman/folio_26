@@ -189,10 +189,6 @@
 	outline-offset: 3px;
 }
 
-.work-item {
-	transform: translate(var(--work-dx, 0px), var(--work-dy, 0px));
-}
-
 .work-item--overlay {
 	position: absolute;
 	z-index: 1;
@@ -202,20 +198,18 @@
 
 .work-item--enter {
 	opacity: 0;
-	transform: translateY(12px);
 	filter: blur(4px);
 	pointer-events: none;
 }
 
 .work-item--exit {
 	opacity: 0;
-	transform: translate(var(--work-dx, 0px), calc(var(--work-dy, 0px) - 12px));
 	filter: blur(4px);
 	pointer-events: none;
 }
 
 .work-item--animate {
-	transition-property: opacity, transform, filter;
+	transition-property: opacity, filter;
 	transition-duration: 220ms;
 	transition-timing-function: ease-out;
 }
@@ -241,10 +235,8 @@
 		scale: 1;
 	}
 
-	.work-item,
 	.work-item--enter,
 	.work-item--exit {
-		transform: none;
 		filter: none;
 	}
 }
