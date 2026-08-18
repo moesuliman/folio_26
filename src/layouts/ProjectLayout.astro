@@ -30,6 +30,15 @@ const galleryImages = getProjectImages(project.data.category, project.id).filter
 	(image) => !/\/cover\.[^/]+$/i.test(image.src),
 );
 const tags = displayTags(project.data.tags);
+const { timeline, role, collaborators } = project.data;
+const showFacts = Boolean(timeline || collaborators);
+const facts = showFacts
+	? [
+			role ? { label: 'Role', value: role } : null,
+			timeline ? { label: 'Timeline', value: timeline } : null,
+			collaborators ? { label: 'Collaborators', value: collaborators } : null,
+		].filter((fact): fact is { label: string; value: string } => fact !== null)
+	: [];
 ---
 
 <BaseLayout
@@ -59,6 +68,18 @@ const tags = displayTags(project.data.tags);
 				project.data.summary
 					.split(/\n\n+/)
 					.map((paragraph) => <p class="hero__lede">{paragraph}</p>)
+			}
+			{
+				facts.length > 0 && (
+					<dl class="project-facts">
+						{facts.map((fact) => (
+							<div>
+								<dt>{fact.label}</dt>
+								<dd>{fact.value}</dd>
+							</div>
+						))}
+					</dl>
+				)
 			}
 		</header>
 
