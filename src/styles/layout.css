@@ -648,8 +648,10 @@
 
 .project-facts {
 	display: grid;
-	grid-template-columns: auto auto;
+	grid-template-columns: repeat(3, max-content);
 	justify-content: start;
+	width: max-content;
+	max-width: 100%;
 	column-gap: var(--space-4);
 	row-gap: var(--space-4);
 	margin: var(--space-5) 0 0;
@@ -664,8 +666,9 @@
 	margin-bottom: var(--space-1);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 720px) {
 	.project-facts {
+		grid-template-columns: max-content max-content;
 		column-gap: var(--space-3);
 		row-gap: var(--space-3);
 	}
