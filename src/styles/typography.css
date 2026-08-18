@@ -104,7 +104,7 @@ strong {
 	line-height: 1.2;
 	letter-spacing: normal;
 	color: var(--color-headings);
-	margin: 0.75rem 0 0.25rem;
+	margin: 0.5rem 0 0;
 	/* border-top: 1.25px solid rgba(255, 255, 255, 0.25); */
 	text-align: center;
 }
@@ -124,4 +124,12 @@ strong {
 	text-align: center;
 	justify-content: center;
 	color: var(--palette-600);
+}
+
+@media (max-width: 720px) {
+	.project-card__title,
+	.project-card__meta {
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+	}
 }
