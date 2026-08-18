@@ -125,6 +125,30 @@
 	vertical-align: middle;
 }
 
+.hero--intro .hero__location {
+	display: inline-flex;
+	align-items: center;
+	max-width: 100%;
+}
+
+.hero--intro .hero__location .hero__glyph {
+	/* ⌂ sits high in the em-box; nudge the mark to optical center */
+	padding-top: 1px;
+	box-sizing: border-box;
+}
+
+.hero--intro .hero__location-text {
+	display: inline-flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	column-gap: 0.35em;
+}
+
+.hero--intro .hero__local-time {
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
 .hero--intro .hero__listen-glyph {
 	position: relative;
 }
@@ -523,6 +547,30 @@
 	border-top-left-radius: 12px;
 	border-top-right-radius: 12px;
 	padding: 0;
+}
+
+.work-board {
+	--work-board-gutter: var(--space-3);
+}
+
+.work-board .site-measure,
+.work-board .project-grid--bleed {
+	width: min(100% - (2 * var(--work-board-gutter)), var(--max-width));
+}
+
+.work-board .project-grid {
+	gap: var(--work-board-gutter);
+	padding: 0;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(min(16rem, calc((100% - var(--work-board-gutter)) / 2)), 1fr)
+	);
+}
+
+@media (max-width: 500px) {
+	.work-board .project-card__meta {
+		display: none;
+	}
 }
 
 .project-header {

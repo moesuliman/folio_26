@@ -7,6 +7,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { getProjectCover } from '../lib/project-cover';
 import { getLatestListen, getListenKicker } from '../lib/listenbrainz';
 import { withBase } from '../lib/base-url';
+import { formatEasternTime } from '../lib/eastern-time';
 
 const projects = (await getCollection('projects'))
 	.filter((project) => !project.data.hidden)
@@ -53,7 +54,15 @@ const latestListen = await getLatestListen();
 				</p>
 			</div>
 			<div class="hero__meta-col">
-				<p><span class="hero__glyph" aria-hidden="true">⌂</span> Brooklyn, NY</p>
+				<p class="hero__location">
+					<span class="hero__glyph" aria-hidden="true">⌂</span>
+					<span class="hero__location-text">
+						Brooklyn, NY
+						<time class="hero__local-time" datetime={new Date().toISOString()}>
+							{formatEasternTime()}
+						</time>
+					</span>
+				</p>
 				<div
 					class="hero__listen-wrap"
 					data-listenbrainz-user={import.meta.env.LISTENBRAINZ_USERNAME}
@@ -205,6 +214,7 @@ const latestListen = await getLatestListen();
 
 <script>
 	import '../scripts/latest-listen';
+	import '../scripts/local-time';
 
 	const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
 	const items = document.querySelectorAll<HTMLElement>('.work-item');
