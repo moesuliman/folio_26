@@ -34,8 +34,8 @@ const { timeline, role, collaborators } = project.data;
 const showFacts = Boolean(timeline || collaborators);
 const facts = showFacts
 	? [
-			timeline ? { label: 'Timeline', value: timeline } : null,
 			role ? { label: 'Role', value: role } : null,
+			timeline ? { label: 'Timeline', value: timeline } : null,
 			collaborators ? { label: 'Collaborators', value: collaborators } : null,
 		].filter((fact): fact is { label: string; value: string } => fact !== null)
 	: [];

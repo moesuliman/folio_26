@@ -648,9 +648,10 @@
 
 .project-facts {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: var(--space-4) var(--space-5);
-	max-width: 36rem;
+	grid-template-columns: auto auto;
+	justify-content: start;
+	column-gap: var(--space-4);
+	row-gap: var(--space-4);
 	margin: var(--space-5) 0 0;
 }
 
@@ -665,7 +666,8 @@
 
 @media (max-width: 480px) {
 	.project-facts {
-		gap: var(--space-3) var(--space-4);
+		column-gap: var(--space-3);
+		row-gap: var(--space-3);
 	}
 }
 
