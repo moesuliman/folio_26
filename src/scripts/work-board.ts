@@ -28,9 +28,12 @@ function matchesFilter(item: HTMLElement, filter: string) {
 	return filter === 'all' || item.dataset.category === filter;
 }
 
-function syncIndicator(tabs: HTMLElement, buttons: HTMLButtonElement[], active: HTMLButtonElement) {
-	tabs.style.setProperty('--tab-index', String(Math.max(0, buttons.indexOf(active))));
-	tabs.style.setProperty('--tab-count', String(buttons.length));
+function syncIndicator(tabs: HTMLElement, active: HTMLButtonElement) {
+	const label = active.querySelector('span') ?? active;
+	const tabsRect = tabs.getBoundingClientRect();
+	const labelRect = label.getBoundingClientRect();
+	tabs.style.setProperty('--ink-x', `${labelRect.left - tabsRect.left}px`);
+	tabs.style.setProperty('--ink-width', `${labelRect.width}px`);
 }
 
 function applyFilter(
@@ -118,8 +121,14 @@ function initWorkBoard() {
 
 	const active =
 		buttons.find((button) => button.getAttribute('aria-pressed') === 'true') ?? buttons[0];
-	syncIndicator(tabs, buttons, active);
-	requestAnimationFrame(() => tabs.classList.add('is-ready'));
+	syncIndicator(tabs, active);
+	requestAnimationFrame(() => {
+		syncIndicator(tabs, active);
+		tabs.classList.add('is-ready');
+	});
+
+	const activeButton = () =>
+		buttons.find((button) => button.getAttribute('aria-pressed') === 'true') ?? buttons[0];
 
 	buttons.forEach((button) => {
 		button.addEventListener('click', () => {
@@ -128,9 +137,15 @@ function initWorkBoard() {
 			buttons.forEach((other) => {
 				other.setAttribute('aria-pressed', String(other === button));
 			});
-			syncIndicator(tabs, buttons, button);
+			syncIndicator(tabs, button);
 			applyFilter(grid, items, button.dataset.filter ?? 'all');
 		});
+	});
+
+	window.addEventListener('resize', () => {
+		tabs.classList.remove('is-ready');
+		syncIndicator(tabs, activeButton());
+		requestAnimationFrame(() => tabs.classList.add('is-ready'));
 	});
 }
 

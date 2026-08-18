@@ -90,8 +90,8 @@
 
 /* Home: Cosmos-style text tabs — underline sits on the bar rule */
 .filters--heading {
-	--tab-count: 4;
-	--tab-index: 0;
+	--ink-x: 0px;
+	--ink-width: 0px;
 	position: relative;
 	display: flex;
 	width: 100%;
@@ -108,17 +108,17 @@
 	left: 0;
 	bottom: -1px;
 	z-index: 1;
-	width: calc(100% / var(--tab-count));
+	width: var(--ink-width);
 	height: 2px;
 	background: var(--color-headings);
-	transform: translateX(calc(var(--tab-index) * 100%));
+	transform: translateX(var(--ink-x));
 	pointer-events: none;
 	opacity: 0;
 }
 
 .filters--heading.is-ready::after {
 	opacity: 1;
-	transition-property: transform;
+	transition-property: transform, width;
 	transition-duration: 200ms;
 	transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 }
