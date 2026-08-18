@@ -217,22 +217,5 @@ const latestListen = await getLatestListen();
 <script>
 	import '../scripts/latest-listen';
 	import '../scripts/local-time';
-
-	const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
-	const items = document.querySelectorAll<HTMLElement>('.work-item');
-
-	buttons.forEach((button) => {
-		button.addEventListener('click', () => {
-			const filter = button.dataset.filter ?? 'all';
-
-			buttons.forEach((other) => {
-				other.setAttribute('aria-pressed', String(other === button));
-			});
-
-			items.forEach((item) => {
-				const category = item.dataset.category;
-				item.hidden = filter !== 'all' && category !== filter;
-			});
-		});
-	});
+	import '../scripts/work-board';
 </script>
