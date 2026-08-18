@@ -646,6 +646,29 @@
 	margin-bottom: var(--space-3);
 }
 
+.project-facts {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--space-4) var(--space-5);
+	max-width: 36rem;
+	margin: var(--space-5) 0 0;
+}
+
+.project-facts dt,
+.project-facts dd {
+	margin: 0;
+}
+
+.project-facts dt {
+	margin-bottom: var(--space-1);
+}
+
+@media (max-width: 480px) {
+	.project-facts {
+		gap: var(--space-3) var(--space-4);
+	}
+}
+
 .project-body {
 	display: grid;
 	gap: var(--space-5);

@@ -21,6 +21,8 @@ const projects = defineCollection({
 				year: z.number(),
 				client: z.string().optional(),
 				role: z.string().optional(),
+				timeline: z.string().optional(),
+				collaborators: z.string().optional(),
 				tags: z.array(projectTag).min(1),
 				cover: image().optional(),
 				coverVideo: z.string().optional(),
