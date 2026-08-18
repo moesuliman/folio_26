@@ -553,6 +553,13 @@
 	--work-board-gutter: var(--space-3);
 }
 
+.work-board__tabs {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	background: var(--color-bg);
+}
+
 .work-board .site-measure,
 .work-board .project-grid--bleed {
 	width: min(100% - (2 * var(--work-board-gutter)), var(--max-width));
