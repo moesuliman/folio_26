@@ -105,6 +105,7 @@
 .hero--intro .hero__meta-col {
 	display: grid;
 	gap: 0;
+	min-width: 0;
 }
 
 .hero--intro .hero__glyph {
@@ -189,8 +190,9 @@
 
 .hero__listen-wrap {
 	position: relative;
-	display: inline-block;
+	display: block;
 	max-width: 100%;
+	min-width: 0;
 }
 
 .hero__listen-trigger {
@@ -198,6 +200,7 @@
 	display: inline-flex;
 	align-items: center;
 	max-width: 100%;
+	min-width: 0;
 	padding: 0;
 	border: 0;
 	background: none;
@@ -207,6 +210,7 @@
 	text-align: left;
 	cursor: pointer;
 	border-radius: 6px;
+	white-space: nowrap;
 	transition-property: color;
 	transition-duration: 150ms;
 	transition-timing-function: ease-out;
@@ -227,6 +231,13 @@
 .hero__listen-trigger:focus-visible {
 	outline: 2px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
 	outline-offset: 3px;
+}
+
+.hero__listen-label {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-width: 0;
 }
 
 .hero__listen-popover {
@@ -647,14 +658,17 @@
 }
 
 .project-facts {
-	display: grid;
-	grid-template-columns: repeat(3, max-content);
-	justify-content: start;
-	width: max-content;
-	max-width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: start;
+	width: 100%;
 	column-gap: var(--space-4);
 	row-gap: var(--space-4);
 	margin: var(--space-5) 0 0;
+}
+
+.project-facts > div {
+	flex: 0 1 auto;
 }
 
 .project-facts dt,
@@ -668,26 +682,49 @@
 
 @media (max-width: 720px) {
 	.project-facts {
-		grid-template-columns: max-content max-content;
-		column-gap: var(--space-3);
-		row-gap: var(--space-3);
+		flex-direction: column;
+		flex-wrap: nowrap;
+		row-gap: 0;
+		column-gap: 0;
+	}
+
+	.project-facts > div {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--space-3);
+		width: 100%;
+		padding-block: var(--space-2);
+		border-bottom: 1px solid var(--color-line);
+	}
+
+	.project-facts dt {
+		flex-shrink: 0;
+		margin-bottom: 0;
+	}
+
+	.project-facts dd {
+		flex: 1;
+		min-width: 0;
+		text-align: right;
 	}
 }
 
 .project-body {
+	--project-work-gutter: var(--space-3);
 	display: grid;
 	gap: var(--space-5);
 	padding-bottom: var(--space-7);
 }
 
 .project-body > :is(.text-block, .image-grid, .video-block, .two-col, .three-col, .semi-full, .stack, .project-section) {
-	width: min(100% - 4rem, var(--max-width));
+	width: min(100% - (2 * var(--project-work-gutter)), var(--max-width));
 	margin-inline: auto;
 }
 
 .project-body > .semi-full--half {
 	width: min(
-		calc((100% - 4rem - var(--space-4)) / 2),
+		calc((100% - (2 * var(--project-work-gutter)) - var(--space-4)) / 2),
 		calc((var(--max-width) - var(--space-4)) / 2)
 	);
 }

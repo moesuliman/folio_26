@@ -19,8 +19,8 @@ const { image, alt = '', half = false } = Astro.props;
 		widths={half ? [480, 720, 960] : [720, 1080, 1440]}
 		sizes={
 			half
-				? '(max-width: 72rem) calc((100vw - 4rem - 1.5rem) / 2), calc((72rem - 1.5rem) / 2)'
-				: '(max-width: 72rem) calc(100vw - 4rem), 72rem'
+				? '(max-width: 72rem) calc((100vw - 2rem - 1.5rem) / 2), calc((72rem - 1.5rem) / 2)'
+				: '(max-width: 72rem) calc(100vw - 2rem), 72rem'
 		}
 		loading="lazy"
 	/>
