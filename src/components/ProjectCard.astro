@@ -13,32 +13,54 @@ interface Props {
 	coverBg?: 'black' | 'white';
 	category: string;
 	tags: string[];
+	/** Skip autoplaying LoopVideo; prefer a still cover, else a non-autoplay video. */
+	still?: boolean;
+	widths?: number[];
+	sizes?: string;
+	titleTag?: 'h2' | 'h3';
 }
 
-const { href, title, cover, coverVideo, coverBg = 'black', category, tags } = Astro.props;
+const {
+	href,
+	title,
+	cover,
+	coverVideo,
+	coverBg = 'black',
+	category,
+	tags,
+	still = false,
+	titleTag = 'h2',
+} = Astro.props;
+const widths = Astro.props.widths ?? (still ? [400, 720] : [480, 800]);
+const sizes = Astro.props.sizes ?? (still ? '(max-width: 720px) 50vw, 22rem' : '(max-width: 720px) 100vw, 33vw');
 const visibleTags = displayTags(tags, 3);
+const TitleTag = titleTag;
 ---
 
 <li class="project-card work-item" data-category={category}>
 	<a href={withBase(href)}>
 		<div class:list={['project-card__media', `project-card__media--${coverBg}`]}>
 			{
-				coverVideo ? (
+				!still && coverVideo ? (
 					<LoopVideo src={coverVideo} alt={title} />
+				) : cover ? (
+					<Image
+						src={cover}
+						alt=""
+						widths={widths}
+						sizes={sizes}
+						loading="lazy"
+						decoding="async"
+						fetchpriority={still ? 'low' : undefined}
+					/>
 				) : (
-					cover && (
-						<Image
-							src={cover}
-							alt=""
-							widths={[480, 800]}
-							sizes="(max-width: 720px) 100vw, 33vw"
-							loading="lazy"
-						/>
+					coverVideo && (
+						<video src={coverVideo} muted playsinline preload="none" aria-label={title} />
 					)
 				)
 			}
 		</div>
-		<h2 class="project-card__title">{title}</h2>
+		<TitleTag class="project-card__title">{title}</TitleTag>
 		<p class="project-card__meta">
 			{visibleTags.map((tag) => <span>{tag}</span>)}
 		</p>

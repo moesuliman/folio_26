@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import { getRelatedProjects, relatedProjectsHeading } from '../lib/related-projects';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const projects = await getCollection('projects');
+const related = getRelatedProjects(project, projects);
+const heading = relatedProjectsHeading(project, related);
+---
+
+{
+	related.length > 0 && (
+		<section class="related-projects" aria-labelledby="related-projects-heading">
+			<h2 id="related-projects-heading" class="related-projects__title">
+				{heading}
+			</h2>
+			<ul class="project-grid related-projects__grid">
+				{related.map((item) => (
+					<ProjectCard
+						href={`/work/${item.id}`}
+						title={item.data.title}
+						cover={item.data.cover}
+						coverBg={item.data.coverBg}
+						category={item.data.category}
+						tags={item.data.tags}
+						still
+						titleTag="h3"
+					/>
+				))}
+			</ul>
+		</section>
+	)
+}

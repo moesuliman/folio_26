@@ -714,7 +714,28 @@
 	--project-work-gutter: var(--space-3);
 	display: grid;
 	gap: var(--space-5);
-	padding-bottom: var(--space-7);
+	padding-bottom: var(--space-4);
+}
+
+.related-projects {
+	width: min(100% - 4rem, var(--max-width));
+	margin-inline: auto;
+	padding-top: var(--space-6);
+	padding-bottom: var(--space-6);
+	border-top: 1.25px solid var(--color-line);
+}
+
+.related-projects__grid.project-grid {
+	padding: 0;
+	gap: var(--space-3);
+	grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 721px) {
+	.related-projects__grid.project-grid {
+		gap: var(--space-4);
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 .project-body > :is(.text-block, .image-grid, .video-block, .two-col, .three-col, .semi-full, .stack, .project-section) {

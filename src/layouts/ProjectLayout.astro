@@ -15,6 +15,7 @@ import FullBleed from '../components/layout/FullBleed.astro';
 import SemiFull from '../components/layout/SemiFull.astro';
 import Stack from '../components/layout/Stack.astro';
 import Section from '../components/layout/Section.astro';
+import RelatedProjects from '../components/RelatedProjects.astro';
 import { getProjectImages } from '../lib/project-images';
 import { displayTags } from '../lib/project-tags';
 import { withBase } from '../lib/base-url';
@@ -113,6 +114,8 @@ const facts = showFacts
 			}
 		</div>
 	</article>
+
+	<RelatedProjects project={project} />
 
 	<Footer slot="footer" />
 </BaseLayout>
