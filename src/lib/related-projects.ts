@@ -11,9 +11,20 @@ export type RelatedProjectLike = {
 	};
 };
 
-function capitalizeCategory(category: string): string {
+export function capitalizeCategory(category: string): string {
 	if (!category) return category;
 	return category.charAt(0).toUpperCase() + category.slice(1);
+}
+
+export function sharedTagCount(current: RelatedProjectLike, candidate: RelatedProjectLike): number {
+	const currentTags = new Set(current.data.tags);
+	let count = 0;
+
+	for (const tag of candidate.data.tags) {
+		if (currentTags.has(tag)) count += 1;
+	}
+
+	return count;
 }
 
 export function scoreRelatedProject(
@@ -26,10 +37,7 @@ export function scoreRelatedProject(
 		score += 4;
 	}
 
-	const currentTags = new Set(current.data.tags);
-	for (const tag of candidate.data.tags) {
-		if (currentTags.has(tag)) score += 2;
-	}
+	score += sharedTagCount(current, candidate) * 2;
 
 	score += Math.max(0, 3 - Math.abs(current.data.order - candidate.data.order) / 5);
 
@@ -78,6 +86,22 @@ export function getRelatedProjects<T extends RelatedProjectLike>(
 	}
 
 	return picked;
+}
+
+/** Remaining visible work that shares no tags with the current project. */
+export function getOtherProjects<T extends RelatedProjectLike>(
+	current: T,
+	all: readonly T[],
+	exclude: readonly T[] = [],
+): T[] {
+	const excluded = new Set([current.id, ...exclude.map((project) => project.id)]);
+
+	return all
+		.filter(
+			(project) =>
+				!excluded.has(project.id) && !project.data.hidden && sharedTagCount(current, project) === 0,
+		)
+		.sort(compareByOrderThenId);
 }
 
 export function relatedProjectsHeading(
