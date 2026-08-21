@@ -769,7 +769,7 @@
 }
 
 .related-projects__list a:hover .related-projects__list-title {
-	color: var(--color-headings);
+	color: var(--palette-950);
 }
 
 .project-body > :is(.text-block, .image-grid, .video-block, .two-col, .three-col, .semi-full, .stack, .project-section) {
